@@ -5,11 +5,11 @@
 </ion-header>
 
 <ion-content padding>
-  <!--[(tags)]="items"-->
 
   <ion-tags-input
     [(ngModel)]="items"
     [separatorStr]="','"
+    [mode]="'md'"
     [canBackspaceRemove]="true"
     [canEnterAdd]="true"
     [placeholder]="'逗号添加'"

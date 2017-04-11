@@ -4,6 +4,8 @@ import {
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
 
+import { Platform } from 'ionic-angular';
+import {OnInit} from "../../../node_modules/@angular/core/src/metadata/lifecycle_hooks";
 /**
  * Generated class for the IonTagsInput directive.
  *
@@ -23,15 +25,15 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   template: `
     <div class="ion-tags-input">
       <div class="iti-tags-wrap">
-        <span *ngFor="let tag of tags; let $index = index"
+        <span *ngFor="let tag of _tags; let $index = index"
               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
           {{tag}}
           <a [hidden]="hideRemove" [class]="'iti-tag-rm iti-tag-color ' + color" (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
-      <input class="iti-input" [type]="type" 
-             [placeholder] = "placeholder"
-             [(ngModel)]="editTag"
+      <input class="iti-input" [type]="type"
+             [placeholder]="placeholder"
+             [(ngModel)]="_editTag"
              (keyup.backspace)="keyRemoveTag()"
              (keyup)="separatorStrAddTag()"
              (keyup.enter)="keyAddTag()">
@@ -121,18 +123,15 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
 
   `],
 })
-export class IonTagsInput implements ControlValueAccessor {
+export class IonTagsInput implements ControlValueAccessor, OnInit {
 
-
-
-  editTag: string = '';
+  _editTag: string = '';
+  _tags: Array<string> = [];
   _onChanged: Function;
   _onTouched: Function;
 
-  @Input() tags: Array<string> = [];
-
-  @Input() mode: string = 'ios';
-  @Input() color: string = 'purple';
+  @Input() mode: string = '';
+  @Input() color: string = '';
   @Input() hideRemove: boolean = false;
 
   @Input() placeholder: string = '+Tag';
@@ -144,16 +143,29 @@ export class IonTagsInput implements ControlValueAccessor {
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  constructor() {
+  constructor(public plt: Platform) {
+
+  }
+
+  ngOnInit(): void {
+    if(this.mode === ''){
+      this.plt.ready().then(()=>{
+        this.initMode();
+      })
+    }
+  }
+
+  initMode(){
+    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
   }
 
   writeValue(val: any): void {
-    this.tags = val;
+    this._tags = val;
   }
 
   registerOnChange(fn: any): void {
     this._onChanged = fn;
-    this.setValue(this.tags);
+    this.setValue(this._tags);
   }
 
   registerOnTouched(fn: any): void {
@@ -164,41 +176,41 @@ export class IonTagsInput implements ControlValueAccessor {
    * @private
    */
   setValue(val: any) {
-      this.tags = val;
+      this._tags = val;
   }
 
   keyAddTag(): any{
-    let tagStr = this.editTag.trim();
+    let tagStr = this._editTag.trim();
     if(!this.canEnterAdd ) return;
     if(!this.verifyTag(tagStr) ) return;
     if(!this.isOnce(tagStr) ) {
-      this.editTag = '';
+      this._editTag = '';
       return;
     }
     this.pushTag(tagStr );
   }
 
   separatorStrAddTag(): any{
-    const lastIndex: number = this.editTag.length-1;
+    const lastIndex: number = this._editTag.length-1;
     let tagStr: string = '';
     if(!this.separatorStr ) return;
 
-    if(this.editTag[lastIndex] === this.separatorStr ){
-      tagStr = this.editTag.split(this.separatorStr)[0].trim();
+    if(this._editTag[lastIndex] === this.separatorStr ){
+      tagStr = this._editTag.split(this.separatorStr)[0].trim();
 
       if(this.verifyTag(tagStr) && this.isOnce(tagStr)){
         this.pushTag(tagStr);
       }else{
-        this.editTag = '';
+        this._editTag = '';
       }
     }
   }
 
   keyRemoveTag(): any{
     if(!this.canBackspaceRemove ) return;
-    if(this.editTag === ''){
+    if(this._editTag === ''){
       this.removeTag(-1);
-      this.editTag = '';
+      this._editTag = '';
 
     }
   }
@@ -211,7 +223,7 @@ export class IonTagsInput implements ControlValueAccessor {
 
     if(typeof this.verifyMethod === 'function'){
        if(!this.verifyMethod(tagStr)){
-         this.editTag = '';
+         this._editTag = '';
          return false;
        }else{
          return true;
@@ -219,7 +231,7 @@ export class IonTagsInput implements ControlValueAccessor {
     }
 
     if(!tagStr.trim() ){
-      this.editTag = '';
+      this._editTag = '';
       return false;
     }else {
       return true;
@@ -227,26 +239,26 @@ export class IonTagsInput implements ControlValueAccessor {
   }
 
   pushTag(tagStr: string): any {
-    this.tags.push(tagStr.trim() );
-    this.onChange.emit(this.tags);
-    this.editTag = '';
+    this._tags.push(tagStr.trim() );
+    this.onChange.emit(this._tags);
+    this._editTag = '';
   }
 
   removeTag($index: number){
-    if(this.tags.length > 0){
+    if(this._tags.length > 0){
       if($index === -1){
-        this.tags.pop();
-        this.onChange.emit(this.tags);
+        this._tags.pop();
+        this.onChange.emit(this._tags);
       }else if ($index > -1) {
-        this.tags.splice($index,1);
-        this.onChange.emit(this.tags);
+        this._tags.splice($index,1);
+        this.onChange.emit(this._tags);
       }
     }
   }
 
   isOnce(tagStr: string): boolean {
     if(!this.once) return true;
-    const tags: string[] = this.tags;
+    const tags: string[] = this._tags;
     return tags.every( (e: string): boolean => {
       return e !== tagStr
     })

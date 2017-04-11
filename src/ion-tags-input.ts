@@ -12,20 +12,20 @@ import {Component, ViewEncapsulation, Input} from '@angular/core';
   selector: 'ion-tags-input',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <div class="ion-tags-input">
-      <div class="iti-tags-wrap">
-        <span *ngFor="let tag of tags; let $index = index" class="iti-tag">
+      <div class="ion-tags-input">
+          <div class="iti-tags-wrap">
+        <span *ngFor="let tag of _tags; let $index = index" class="iti-tag">
           {{tag}}
           <a class="iti-tag-rm" (click)="btnRemoveTag($index)"></a>
        </span>
+          </div>
+          <input class="iti-input" type="text"
+                 [placeholder]="placeholder"
+                 [(ngModel)]="_editTag"
+                 (keyup.backspace)="keyRemoveTag()"
+                 (keyup)="separatorStrAddTag()"
+                 (keyup.enter)="keyAddTag()">
       </div>
-      <input class="iti-input" type="text" 
-             [placeholder] = "placeholder"
-             [(ngModel)]="editTag"
-             (keyup.backspace)="keyRemoveTag()"
-             (keyup)="separatorStrAddTag()"
-             (keyup.enter)="keyAddTag()">
-    </div>
   `,
   styles:[`    
     .ion-tags-input{
