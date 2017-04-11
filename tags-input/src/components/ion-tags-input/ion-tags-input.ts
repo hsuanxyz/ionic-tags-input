@@ -175,9 +175,7 @@ export class IonTagsInput implements ControlValueAccessor {
       this.editTag = '';
       return;
     }
-    this.tags.push(tagStr );
-    this.editTag = '';
-    this.onChange.emit(this.tags);
+    this.pushTag(tagStr );
   }
 
   separatorStrAddTag(): any{
@@ -199,16 +197,14 @@ export class IonTagsInput implements ControlValueAccessor {
   keyRemoveTag(): any{
     if(!this.canBackspaceRemove ) return;
     if(this.editTag === ''){
-      this.tags.pop();
+      this.removeTag(-1);
       this.editTag = '';
 
     }
   }
 
   btnRemoveTag($index): any{
-    if(this.tags[$index] ){
-      this.tags.splice($index,1)
-    }
+    this.removeTag($index);
   }
 
   verifyTag(tagStr: string) :boolean {
@@ -228,12 +224,24 @@ export class IonTagsInput implements ControlValueAccessor {
     }else {
       return true;
     }
-
   }
 
   pushTag(tagStr: string): any {
     this.tags.push(tagStr.trim() );
+    this.onChange.emit(this.tags);
     this.editTag = '';
+  }
+
+  removeTag($index: number){
+    if(this.tags.length > 0){
+      if($index === -1){
+        this.tags.pop();
+        this.onChange.emit(this.tags);
+      }else if ($index > -1) {
+        this.tags.splice($index,1);
+        this.onChange.emit(this.tags);
+      }
+    }
   }
 
   isOnce(tagStr: string): boolean {

@@ -7,6 +7,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
   items = ['Pizza', 'Pasta', 'Parmesan'];
+  itemsStr = '';
   constructor(public navCtrl: NavController) {
 
   }
@@ -16,6 +17,7 @@ export class HomePage {
   }
 
   onChange(val){
+    this.itemsStr = this.items.toString();
     console.log(val)
   }
 }
