@@ -1,11 +1,10 @@
-import {Component, Input, Output, EventEmitter, forwardRef} from '@angular/core';
+import {Component, Input, Output, EventEmitter, HostListener,OnInit, ViewChild, forwardRef} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
 } from "@angular/forms";
 
 import { Platform } from 'ionic-angular';
-import {OnInit} from "../../../node_modules/@angular/core/src/metadata/lifecycle_hooks";
 /**
  * Generated class for the IonTagsInput directive.
  *
@@ -31,9 +30,12 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
           <a [hidden]="hideRemove" [class]="'iti-tag-rm iti-tag-color ' + color" (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
-      <input class="iti-input" [type]="type"
+      <input #tagsInput
+             class="iti-input" [type]="type"
              [placeholder]="placeholder"
              [(ngModel)]="_editTag"
+             (blur)="_blur()"
+             (focus)="_focus()"
              (keyup.backspace)="keyRemoveTag()"
              (keyup)="separatorStrAddTag()"
              (keyup.enter)="keyAddTag()">
@@ -127,8 +129,11 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   _editTag: string = '';
   _tags: Array<string> = [];
+  _isFocus: boolean = false;
   _onChanged: Function;
   _onTouched: Function;
+
+  @ViewChild('tagsInput') input;
 
   @Input() mode: string = '';
   @Input() color: string = '';
@@ -143,9 +148,8 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  constructor(public plt: Platform) {
 
-  }
+  constructor(public plt: Platform) {}
 
   ngOnInit(): void {
     if(this.mode === ''){
@@ -153,30 +157,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
         this.initMode();
       })
     }
-  }
-
-  initMode(){
-    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
-  }
-
-  writeValue(val: any): void {
-    this._tags = val;
-  }
-
-  registerOnChange(fn: any): void {
-    this._onChanged = fn;
-    this.setValue(this._tags);
-  }
-
-  registerOnTouched(fn: any): void {
-    this._onTouched = fn;
-  }
-
-  /**
-   * @private
-   */
-  setValue(val: any) {
-      this._tags = val;
   }
 
   keyAddTag(): any{
@@ -211,7 +191,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     if(this._editTag === ''){
       this.removeTag(-1);
       this._editTag = '';
-
     }
   }
 
@@ -262,6 +241,46 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     return tags.every( (e: string): boolean => {
       return e !== tagStr
     })
+  }
+
+  @HostListener('click', ['$event'])
+  private _click(ev: UIEvent) {
+    this.input.nativeElement.focus();
+    this._isFocus = true;
+    ev.preventDefault();
+    ev.stopPropagation();
+  }
+
+  private _blur(){
+    this.input.nativeElement.blur();
+    this._isFocus = false;
+  }
+
+  private _focus(){
+    if(!this._isFocus){
+      this._isFocus = true;
+    }
+  }
+
+  writeValue(val: any): void {
+    this._tags = val;
+  }
+
+  registerOnChange(fn: any): void {
+    this._onChanged = fn;
+    this.setValue(this._tags);
+  }
+
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn;
+  }
+
+  private setValue(val: any) {
+    this._tags = val;
+  }
+
+  private initMode(){
+    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
   }
 
 

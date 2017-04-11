@@ -9,7 +9,7 @@
   <ion-tags-input
     [(ngModel)]="items"
     [separatorStr]="','"
-    [mode]="'md'"
+    [type]="'number'"
     [canBackspaceRemove]="true"
     [canEnterAdd]="true"
     [placeholder]="'逗号添加'"
@@ -18,6 +18,5 @@
     (onChange)="onChange($event)"
   ></ion-tags-input>
   {{itemsStr}}
-
 
 </ion-content>
