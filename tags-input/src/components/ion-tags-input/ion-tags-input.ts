@@ -133,7 +133,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _onChanged: Function;
   _onTouched: Function;
 
-  @ViewChild('tagsInput') input;
+  @ViewChild('tagsInput') input: any;
 
   @Input() mode: string = '';
   @Input() color: string = '';
@@ -194,7 +194,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     }
   }
 
-  btnRemoveTag($index): any{
+  btnRemoveTag($index: number): any{
     this.removeTag($index);
   }
 

@@ -3,7 +3,7 @@
  */
 var gulp = require('gulp');
 
-var componentsDevPath = '_tags-input/src/components/ion-_tags-input';
+var componentsDevPath = 'tags-input/src/components/ion-tags-input';
 
 gulp.task('copy2src',function () {
     return gulp.src(
