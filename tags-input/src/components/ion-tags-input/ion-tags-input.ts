@@ -14,9 +14,10 @@ import {Component, ViewEncapsulation, Input} from '@angular/core';
   template: `
     <div class="ion-tags-input">
       <div class="iti-tags-wrap">
-        <span *ngFor="let tag of tags; let $index = index" class="iti-tag">
+        <span *ngFor="let tag of tags; let $index = index"
+              [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
           {{tag}}
-          <a class="iti-tag-rm" (click)="btnRemoveTag($index)"></a>
+          <a [class]="'iti-tag-rm iti-tag-color ' + color" (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
       <input class="iti-input" type="text" 
@@ -27,29 +28,31 @@ import {Component, ViewEncapsulation, Input} from '@angular/core';
              (keyup.enter)="keyAddTag()">
     </div>
   `,
-  styles:[`    
-    .ion-tags-input{
+  styles:[`
+    .ion-tags-input {
       border: 1px solid #ddd;
       padding: 5px;
     }
-    
-    .ion-tags-input .iti-tag{
-      background-color: #cde69c;
-      border-radius: 2px;
-      border: 1px solid #a5d24a;
-      color: #638421;
+
+    .ion-tags-input .iti-tag {
       display: block;
       float: left;
       font-family: sans-serif;
-      font-size: 13px;
+      font-size: 1.3rem;
       font-weight: 400;
       margin-right: 5px;
       margin-bottom: 5px;
-      padding: 5px;
+      padding: 4px 10px;
       max-height: 30px;
     }
-    
-    .ion-tags-input .iti-input{
+
+    .ion-tags-input a.iti-tag-rm::before {
+      content: " x";
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .ion-tags-input .iti-input {
       background: transparent;
       border: 0;
       color: #777;
@@ -60,13 +63,53 @@ import {Component, ViewEncapsulation, Input} from '@angular/core';
       padding: 5px;
       width: 80px;
     }
-    
-    .ion-tags-input a.iti-tag-rm::before{
-      content: " x";
-      color: #638421;
-      cursor: pointer;
-      font-weight: bold;
+
+    .ion-tags-input .iti-tag.iti-tag-ios {
+      border-radius: 13px;
     }
+
+    .ion-tags-input .iti-tag.iti-tag-md {
+      border-radius: 4px;
+    }
+
+    .ion-tags-input .iti-tag.iti-tag-wp {
+      border-radius: 0;
+    }
+
+    .iti-tag-color {
+      background-color: #4a8bfc;
+      color: white;
+    }
+
+    .iti-tag-color.light {
+      background-color: #f4f4f4;
+      color: #000;
+    }
+
+    .iti-tag-color.secondary {
+      background-color: #32db64;
+    }
+
+    .iti-tag-color.danger {
+      background-color: #f53d3d;
+    }
+
+    .iti-tag-color.dark {
+      background-color: #222;
+    }
+
+    .iti-tag-color.warn {
+      background-color: #ffc125;
+    }
+    
+    .iti-tag-color.gray {
+      background-color: #767676;
+    }
+    
+    .iti-tag-color.purple {
+      background-color: #7e60ff;
+    }
+
   `],
 })
 export class IonTagsInput {
@@ -74,13 +117,14 @@ export class IonTagsInput {
   tags: Array<string> = [];
   editTag: string = '';
 
+  @Input() mode: string = 'ios';
+  @Input() color: string = 'purple';
   @Input() placeholder: string = '+Tag';
   @Input() separatorStr: string = ',';
   @Input() once: boolean = true;
   @Input() canEnterAdd: boolean = true;
   @Input() canBackspaceRemove: boolean = true;
   @Input() verifyMethod: (tagSrt: string) => boolean;
-
 
   constructor() {
     this.tags = ['Pizza', 'Pasta', 'Parmesan'];
