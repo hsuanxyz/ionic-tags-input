@@ -1,0 +1,30 @@
+{
+  "name": "ionic-tags-input",
+  "version": "0.0.1",
+  "description": "A ionic tags input components",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HsuanXyz/ionic-tags-input.git"
+  },
+  "keywords": [
+    "ionic",
+    "ionic2",
+    "ionic3",
+    "tags",
+    "input"
+  ],
+  "author": "HsuanLee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HsuanXyz/ionic-tags-input/issues"
+  },
+  "homepage": "https://github.com/HsuanXyz/ionic-tags-input#readme"
+}

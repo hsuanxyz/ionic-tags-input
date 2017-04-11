@@ -11,4 +11,8 @@ export class HomePage {
 
   }
 
+  tagStrVerify(str: string){
+    return str !== 'ABC' && str.trim() !== '';
+  }
+
 }
