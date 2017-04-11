@@ -15,4 +15,7 @@ export class HomePage {
     return str !== 'ABC' && str.trim() !== '';
   }
 
+  onChange(val){
+    console.log(val)
+  }
 }

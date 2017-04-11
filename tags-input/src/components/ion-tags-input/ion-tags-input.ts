@@ -1,5 +1,8 @@
-import {Component, ViewEncapsulation, Input} from '@angular/core';
-
+import {Component, Input, Output, EventEmitter, forwardRef} from '@angular/core';
+import {
+  ControlValueAccessor,
+  NG_VALUE_ACCESSOR,
+} from "@angular/forms";
 
 /**
  * Generated class for the IonTagsInput directive.
@@ -8,19 +11,25 @@ import {Component, ViewEncapsulation, Input} from '@angular/core';
  * for more info on Angular Directives.
  */
 
+export const CITY_PICKER_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => IonTagsInput),
+  multi: true
+};
+
 @Component({
   selector: 'ion-tags-input',
-  encapsulation: ViewEncapsulation.None,
+  providers: [CITY_PICKER_VALUE_ACCESSOR],
   template: `
     <div class="ion-tags-input">
       <div class="iti-tags-wrap">
         <span *ngFor="let tag of tags; let $index = index"
               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
           {{tag}}
-          <a [class]="'iti-tag-rm iti-tag-color ' + color" (click)="btnRemoveTag($index)"></a>
+          <a [hidden]="hideRemove" [class]="'iti-tag-rm iti-tag-color ' + color" (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
-      <input class="iti-input" type="text" 
+      <input class="iti-input" [type]="type" 
              [placeholder] = "placeholder"
              [(ngModel)]="editTag"
              (keyup.backspace)="keyRemoveTag()"
@@ -112,22 +121,50 @@ import {Component, ViewEncapsulation, Input} from '@angular/core';
 
   `],
 })
-export class IonTagsInput {
+export class IonTagsInput implements ControlValueAccessor {
 
-  tags: Array<string> = [];
+
+
   editTag: string = '';
+  _onChanged: Function;
+  _onTouched: Function;
+
+  @Input() tags: Array<string> = [];
 
   @Input() mode: string = 'ios';
   @Input() color: string = 'purple';
+  @Input() hideRemove: boolean = false;
+
   @Input() placeholder: string = '+Tag';
+  @Input() type: string = 'text';
   @Input() separatorStr: string = ',';
   @Input() once: boolean = true;
   @Input() canEnterAdd: boolean = true;
   @Input() canBackspaceRemove: boolean = true;
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
+  @Output() onChange: EventEmitter<any> = new EventEmitter();
   constructor() {
-    this.tags = ['Pizza', 'Pasta', 'Parmesan'];
+  }
+
+  writeValue(val: any): void {
+    this.tags = val;
+  }
+
+  registerOnChange(fn: any): void {
+    this._onChanged = fn;
+    this.setValue(this.tags);
+  }
+
+  registerOnTouched(fn: any): void {
+    this._onTouched = fn;
+  }
+
+  /**
+   * @private
+   */
+  setValue(val: any) {
+      this.tags = val;
   }
 
   keyAddTag(): any{
@@ -140,6 +177,7 @@ export class IonTagsInput {
     }
     this.tags.push(tagStr );
     this.editTag = '';
+    this.onChange.emit(this.tags);
   }
 
   separatorStrAddTag(): any{
@@ -205,5 +243,6 @@ export class IonTagsInput {
       return e !== tagStr
     })
   }
+
 
 }
