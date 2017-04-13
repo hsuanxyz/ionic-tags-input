@@ -12,7 +12,7 @@ export class HomePage {
 
   }
 
-  tagStrVerify(str: string){
+  tagStrVerify(str: string): boolean{
     return str !== 'ABC' && str.trim() !== '';
   }
 
