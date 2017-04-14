@@ -9,11 +9,10 @@
   <ion-tags-input
     [(ngModel)]="items"
     [separatorStr]="','"
-    [type]="'number'"
     [canBackspaceRemove]="true"
     [canEnterAdd]="true"
     [placeholder]="'逗号添加'"
-    [once]="true"
+    [once]="false"
     [verifyMethod]="tagStrVerify"
     (onChange)="onChange($event)"
   ></ion-tags-input>

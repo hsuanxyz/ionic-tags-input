@@ -3,18 +3,17 @@
 [![Dependency Status](https://david-dm.org/HsuanXyz/ionic-tags-input.svg)](https://david-dm.org/HsuanXyz/ionic-tags-input)
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][downloads-url] [![MIT License][license-image]][license-url]
 
-A ionic tags input component for ionic2
+一个ionic的标签输入(tags-input)组件
 
 [![NPM](https://nodei.co/npm/ionic-tags-input.png?downloads=true&stars=true)](https://nodei.co/npm/ionic-tags-input/)
 
-[中文文档](https://github.com/HsuanXyz/ionic-tags-input/blob/master/README-CN.md)
-
-## Install
+## 安装
 
 `npm install ionic-tags-input --save`
 
-## Use
- import the module:
+## 使用
+
+ 引入模块
 
  ```
  ...
@@ -32,9 +31,9 @@ export class AppModule {}
 
  ```
 
-## Example
+## 例子
 
-### Basic
+### 基本使用
 
 ```
 <ion-tags-input [(ngModel)]="tags" (onChange)="onChange($event)"></ion-tags-input>
@@ -54,29 +53,29 @@ export class YourPage {
 }
 ```
 
-set placeholder
+设置placeholder
 
 ```
 <ion-tags-input [(ngModel)]="tags" [placeholder]="'add tag'"></ion-tags-input>
 ```
 
-set input type
+设置 input type
 
-*** Can not be verified, but can set the keyboard type ***
+***无法提供类型验证，只能设置软键盘类型***
 
 ```
 <ion-tags-input [(ngModel)]="tags" [type]="'email'"></ion-tags-input>
 ```
 
-can not be repeated
+设置标签不重复
 
 ```
 <ion-tags-input [(ngModel)]="tags" [once]="'true'"></ion-tags-input>
 ```
 
-### Style
+### 样式
 
-Setting mode
+设置平台样式
 
 ```
 <ion-tags-input [(ngModel)]="tags" [mode]="'md'"></ion-tags-input>
@@ -84,45 +83,45 @@ Setting mode
 <ion-tags-input [(ngModel)]="tags" [mode]="'wp'"></ion-tags-input>
 ```
 
-Setting color:
+设置颜色
 
 ```
 <ion-tags-input [(ngModel)]="tags" [mode]="'light'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'secondary'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'danger'"></ion-tags-input>
 ```
-All color: `light secondary danger dark warn gray purple`
+全部颜色: `light secondary danger dark warn gray purple`
 
-Hide remove button
+隐藏移除按钮
 
 ```
 <ion-tags-input [(ngModel)]="tags" [hideRemove]="ture"></ion-tags-input>
 ```
 
-### Separator
+### 分割符
 
-Use separator submit input
+使用分隔符确认输入
 ```
 <ion-tags-input [(ngModel)]="tags" [separatorStr]="','"></ion-tags-input>
 ```
 
-### Keyboard
+### 键盘
 
-Use `Backspace` remove tag
+使用`Backspace`删除标签
 
 ```
 <ion-tags-input [(ngModel)]="tags" [canBackspaceRemove]="true"></ion-tags-input>
 ```
 
-Use `Enter` submit input
+使用`Enter` 添加标签
 
 ```
 <ion-tags-input [(ngModel)]="tags" [canEnterAdd]="true"></ion-tags-input>
 ```
 
-### Verify
+### 验证
 
-A function whose argument is a string, returns a boolean value
+传入一个方法，该方法接受一个字符串，返回一个布尔值
 
 ```
 <ion-tags-input [(ngModel)]="tags" [verifyMethod]="verifyTag"></ion-tags-input>
@@ -143,18 +142,20 @@ export class YourPage {
 ```
 
 ## API
-### Input
+
+### 输入属性
+
 | Name            | Type          | Description |
 | --------------- | ------------- | ----------- |
-| mode            | String        | platform style `md ios wp`     |
-| color           | String        | color style `light secondary danger dark warn gray purple`   |
-| placeholder     | String        | input placeholder |
-| type            | String        | input type    |
-| hideRemove      | Boolean       | hide remove button   |
-| once            | Boolean       | setting can not be repeated  |
-| canEnterAdd     | Boolean       | can usr the Enter key submit input |
-| canBackspaceRemove | Boolean    | can usr the Backspace key remove tag |
-| verifyMethod    | Function      | use function to verify input|
+| mode            | String        | 设置平台样式 `md ios wp`     |
+| color           | String        | 设置颜色 `light secondary danger dark warn gray purple`   |
+| placeholder     | String        | 设置 input placeholder |
+| type            | String        | 设置 input type    |
+| hideRemove      | Boolean       | 隐藏移除按钮  |
+| once            | Boolean       | 设置标签唯一 |
+| canEnterAdd     | Boolean       | 是否能使用Enter键确认输入 |
+| canBackspaceRemove | Boolean    | 能否使用Backspace键删除标签 |
+| verifyMethod    | Function      | 提过给标签输入的验证方法 |
 
 [npm-url]: https://www.npmjs.com/package/ionic-tags-input
 [npm-image]: https://img.shields.io/npm/v/ionic-tags-input.svg
