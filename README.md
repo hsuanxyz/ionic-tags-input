@@ -150,6 +150,7 @@ export class YourPage {
 | color           | String        | color style `light secondary danger dark warn gray purple`   |
 | placeholder     | String        | input placeholder |
 | type            | String        | input type    |
+| maxTags         | number        | sets tags max number, `-1` unlimited |
 | hideRemove      | Boolean       | hide remove button   |
 | once            | Boolean       | setting can not be repeated  |
 | canEnterAdd     | Boolean       | can usr the Enter key submit input |

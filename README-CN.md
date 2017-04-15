@@ -151,6 +151,7 @@ export class YourPage {
 | color           | String        | 设置颜色 `light secondary danger dark warn gray purple`   |
 | placeholder     | String        | 设置 input placeholder |
 | type            | String        | 设置 input type    |
+| maxTags         | number        | 设置最大数, `-1` 无限制 |
 | hideRemove      | Boolean       | 隐藏移除按钮  |
 | once            | Boolean       | 设置标签唯一 |
 | canEnterAdd     | Boolean       | 是否能使用Enter键确认输入 |

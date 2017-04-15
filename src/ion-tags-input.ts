@@ -138,7 +138,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() mode: string = '';
   @Input() color: string = '';
   @Input() hideRemove: boolean = false;
-  @Input() maxSize: number = -1;
+  @Input() maxTags: number = -1;
 
   @Input() placeholder: string = '+Tag';
   @Input() type: string = 'text';
