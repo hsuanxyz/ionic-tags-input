@@ -138,6 +138,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() mode: string = '';
   @Input() color: string = '';
   @Input() hideRemove: boolean = false;
+  @Input() maxSize: number = -1;
 
   @Input() placeholder: string = '+Tag';
   @Input() type: string = 'text';
@@ -218,12 +219,16 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   pushTag(tagStr: string): any {
+    if(this.maxSize !== -1 && this._tags.length >= this.maxSize){
+      this._editTag = '';
+      return;
+    }
     this._tags.push(tagStr.trim() );
     this.onChange.emit(this._tags);
     this._editTag = '';
   }
 
-  removeTag($index: number){
+  removeTag($index: number): any{
     if(this._tags.length > 0){
       if($index === -1){
         this._tags.pop();
@@ -244,19 +249,19 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   @HostListener('click', ['$event'])
-  private _click(ev: UIEvent) {
+  private _click(ev: UIEvent):any {
     this.input.nativeElement.focus();
     this._isFocus = true;
     ev.preventDefault();
     ev.stopPropagation();
   }
 
-  private _blur(){
+  private _blur(): any{
     this.input.nativeElement.blur();
     this._isFocus = false;
   }
 
-  private _focus(){
+  private _focus(): any{
     if(!this._isFocus){
       this._isFocus = true;
     }
@@ -275,11 +280,11 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     this._onTouched = fn;
   }
 
-  private setValue(val: any) {
+  private setValue(val: any): any {
     this._tags = val;
   }
 
-  private initMode(){
+  private initMode(): any{
     this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
   }
 

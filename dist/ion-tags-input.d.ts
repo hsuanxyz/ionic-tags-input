@@ -19,6 +19,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     mode: string;
     color: string;
     hideRemove: boolean;
+    maxSize: number;
     placeholder: string;
     type: string;
     separatorStr: string;
@@ -35,7 +36,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     btnRemoveTag($index: number): any;
     verifyTag(tagStr: string): boolean;
     pushTag(tagStr: string): any;
-    removeTag($index: number): void;
+    removeTag($index: number): any;
     isOnce(tagStr: string): boolean;
     private _click(ev);
     private _blur();

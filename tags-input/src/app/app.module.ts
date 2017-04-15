@@ -10,7 +10,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {IonTagsInputModule} from "ionic-tags-input";
+import { IonTagsInputModule } from "../components/ion-tags-input";
 
 @NgModule({
   declarations: [

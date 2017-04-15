@@ -21,6 +21,7 @@ export var IonTagsInput = (function () {
         this.mode = '';
         this.color = '';
         this.hideRemove = false;
+        this.maxSize = -1;
         this.placeholder = '+Tag';
         this.type = 'text';
         this.separatorStr = ',';
@@ -94,6 +95,10 @@ export var IonTagsInput = (function () {
         }
     };
     IonTagsInput.prototype.pushTag = function (tagStr) {
+        if (this.maxSize !== -1 && this._tags.length >= this.maxSize) {
+            this._editTag = '';
+            return;
+        }
         this._tags.push(tagStr.trim());
         this.onChange.emit(this._tags);
         this._editTag = '';
@@ -166,6 +171,7 @@ export var IonTagsInput = (function () {
         'mode': [{ type: Input },],
         'color': [{ type: Input },],
         'hideRemove': [{ type: Input },],
+        'maxSize': [{ type: Input },],
         'placeholder': [{ type: Input },],
         'type': [{ type: Input },],
         'separatorStr': [{ type: Input },],
