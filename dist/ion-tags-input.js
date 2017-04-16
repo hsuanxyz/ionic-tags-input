@@ -26,8 +26,8 @@ export var IonTagsInput = (function () {
         this.type = 'text';
         this.separatorStr = ',';
         this.once = true;
-        this.canEnterAdd = true;
-        this.canBackspaceRemove = true;
+        this.canEnterAdd = false;
+        this.canBackspaceRemove = false;
         this.onChange = new EventEmitter();
     }
     IonTagsInput.prototype.ngOnInit = function () {
@@ -171,7 +171,7 @@ export var IonTagsInput = (function () {
         'mode': [{ type: Input },],
         'color': [{ type: Input },],
         'hideRemove': [{ type: Input },],
-        'maxSize': [{ type: Input },],
+        'maxTags': [{ type: Input },],
         'placeholder': [{ type: Input },],
         'type': [{ type: Input },],
         'separatorStr': [{ type: Input },],

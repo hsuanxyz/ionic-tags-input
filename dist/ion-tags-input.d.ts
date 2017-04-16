@@ -19,7 +19,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     mode: string;
     color: string;
     hideRemove: boolean;
-    maxSize: number;
+    maxTags: number;
     placeholder: string;
     type: string;
     separatorStr: string;

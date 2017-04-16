@@ -144,8 +144,8 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() type: string = 'text';
   @Input() separatorStr: string = ',';
   @Input() once: boolean = true;
-  @Input() canEnterAdd: boolean = true;
-  @Input() canBackspaceRemove: boolean = true;
+  @Input() canEnterAdd: boolean = false;
+  @Input() canBackspaceRemove: boolean = false;
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
@@ -219,7 +219,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   pushTag(tagStr: string): any {
-    if(this.maxSize !== -1 && this._tags.length >= this.maxSize){
+    if(this.maxTags !== -1 && this._tags.length >= this.maxTags){
       this._editTag = '';
       return;
     }
