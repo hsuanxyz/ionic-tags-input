@@ -4,19 +4,69 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content>
+
+
+  <ion-list-header>
+    Basic
+  </ion-list-header>
 
   <ion-tags-input
     [(ngModel)]="items"
+    (onChange)="onChange($event)">
+  </ion-tags-input>
+
+
+  <ion-list-header>
+    Separate with comma
+  </ion-list-header>
+  <ion-tags-input
+    [(ngModel)]="items"
     [separatorStr]="','"
-    [canBackspaceRemove]="true"
-    [canEnterAdd]="true"
-    [placeholder]="'逗号添加'"
-    [once]="false"
-    [maxSize]="5"
-    [verifyMethod]="tagStrVerify"
-    (onChange)="onChange($event)"
-  ></ion-tags-input>
-  {{itemsStr}}
+    [color]="'purple'">
+  </ion-tags-input>
+
+  <ion-list-header>
+    Not be repeated
+  </ion-list-header>
+  <ion-tags-input
+    [(ngModel)]="items2"
+    [once]="true"
+    [color]="'danger'">
+  </ion-tags-input>
+
+  <ion-list-header>
+    Backspace Keyboard remove
+  </ion-list-header>
+  <ion-tags-input
+    [(ngModel)]="items3"
+    [color]="'dark'"
+    [canBackspaceRemove]="true">
+  </ion-tags-input>
+
+  <ion-list-header>
+    Verify:
+    Can not be a 'ABC'
+  </ion-list-header>
+  <ion-tags-input
+    [(ngModel)]="items4"
+    [color]="'warn'"
+    [verifyMethod]="tagStrVerify">
+  </ion-tags-input>
+
+  <ion-list-header>
+    Max tags:
+    5
+  </ion-list-header>
+  <ion-tags-input
+    [(ngModel)]="items5"
+    [color]="'secondary'"
+    [maxTags]="5">
+  </ion-tags-input>
+
+
+
+
+
 
 </ion-content>

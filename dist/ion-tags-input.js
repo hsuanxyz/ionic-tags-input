@@ -21,7 +21,7 @@ export var IonTagsInput = (function () {
         this.mode = '';
         this.color = '';
         this.hideRemove = false;
-        this.maxSize = -1;
+        this.maxTags = -1;
         this.placeholder = '+Tag';
         this.type = 'text';
         this.separatorStr = ',';
@@ -95,7 +95,7 @@ export var IonTagsInput = (function () {
         }
     };
     IonTagsInput.prototype.pushTag = function (tagStr) {
-        if (this.maxSize !== -1 && this._tags.length >= this.maxSize) {
+        if (this.maxTags !== -1 && this._tags.length >= this.maxTags) {
             this._editTag = '';
             return;
         }

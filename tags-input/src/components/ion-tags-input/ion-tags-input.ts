@@ -138,14 +138,14 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() mode: string = '';
   @Input() color: string = '';
   @Input() hideRemove: boolean = false;
-  @Input() maxSize: number = -1;
+  @Input() maxTags: number = -1;
 
   @Input() placeholder: string = '+Tag';
   @Input() type: string = 'text';
   @Input() separatorStr: string = ',';
   @Input() once: boolean = true;
-  @Input() canEnterAdd: boolean = true;
-  @Input() canBackspaceRemove: boolean = true;
+  @Input() canEnterAdd: boolean = false;
+  @Input() canBackspaceRemove: boolean = false;
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
@@ -219,7 +219,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   pushTag(tagStr: string): any {
-    if(this.maxSize !== -1 && this._tags.length >= this.maxSize){
+    if(this.maxTags !== -1 && this._tags.length >= this.maxTags){
       this._editTag = '';
       return;
     }

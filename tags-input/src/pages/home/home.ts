@@ -6,7 +6,11 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  items = ['Pizza', 'Pasta', 'Parmesan'];
+  items = ['TypeScript', 'Angular', 'Ionic'];
+  items2 = ['TypeScript', 'Angular', 'Ionic'];
+  items3 = ['TypeScript', 'Angular', 'Ionic'];
+  items4 = ['TypeScript', 'Angular', 'Ionic'];
+  items5 = ['TypeScript', 'Angular', 'Ionic'];
   itemsStr = '';
   constructor(public navCtrl: NavController) {
 
@@ -17,7 +21,6 @@ export class HomePage {
   }
 
   onChange(val){
-    this.itemsStr = this.items.toString();
     console.log(val)
   }
 }
