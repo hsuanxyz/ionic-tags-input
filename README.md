@@ -3,12 +3,15 @@
 [![Dependency Status](https://david-dm.org/HsuanXyz/ionic-tags-input.svg)](https://david-dm.org/HsuanXyz/ionic-tags-input)
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][downloads-url] [![MIT License][license-image]][license-url]
 
-A ionic tags input component for ionic2
-
 [![NPM](https://nodei.co/npm/ionic-tags-input.png?downloads=true&stars=true)](https://nodei.co/npm/ionic-tags-input/)
 
+A ionic tags input component for ionic2
 [中文文档](https://github.com/HsuanXyz/ionic-tags-input/blob/master/README-CN.md)
 
+
+![demo](https://github.com/HsuanXyz/hsuanxyz.github.io/blob/master/assets/ionic-tags-input/tags.png?raw=true)
+
+[DEMO](https://hsuanxyz.github.io/demo/ionic-tags-input/)
 ## Install
 
 `npm install ionic-tags-input --save`

@@ -3,9 +3,13 @@
 [![Dependency Status](https://david-dm.org/HsuanXyz/ionic-tags-input.svg)](https://david-dm.org/HsuanXyz/ionic-tags-input)
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][downloads-url] [![MIT License][license-image]][license-url]
 
+[![NPM](https://nodei.co/npm/ionic-tags-input.png?downloads=true&stars=true)](https://nodei.co/npm/ionic-tags-input/)
+
 一个ionic的标签输入(tags-input)组件
 
-[![NPM](https://nodei.co/npm/ionic-tags-input.png?downloads=true&stars=true)](https://nodei.co/npm/ionic-tags-input/)
+![demo](https://github.com/HsuanXyz/hsuanxyz.github.io/blob/master/assets/ionic-tags-input/tags.png?raw=true)
+
+[DEMO](https://hsuanxyz.github.io/demo/ionic-tags-input/)
 
 ## 安装
 
