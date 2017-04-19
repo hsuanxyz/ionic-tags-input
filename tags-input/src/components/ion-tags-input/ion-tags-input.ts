@@ -22,7 +22,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   selector: 'ion-tags-input',
   providers: [CITY_PICKER_VALUE_ACCESSOR],
   template: `
-    <div class="ion-tags-input" [class.active]="_isFocus">
+    <div [class]="'ion-tags-input tit-border-color ' + +color" [class.active]="_isFocus">
       <div class="iti-tags-wrap">
         <span *ngFor="let tag of _tags; let $index = index"
               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
@@ -99,33 +99,65 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
       color: white;
     }
 
+    .ion-tags-input.active.tit-border-color {
+      border-bottom-color: #4a8bfc;
+    }
+
     .iti-tag-color.light {
       background-color: #f4f4f4;
       color: #000;
+    }
+
+    .ion-tags-input.active.tit-border-color.light {
+      border-bottom-color: #bcbcbc;
     }
 
     .iti-tag-color.secondary {
       background-color: #32db64;
     }
 
+    .ion-tags-input.active.tit-border-color.secondary {
+      border-bottom-color: #32db64;
+    }
+
     .iti-tag-color.danger {
       background-color: #f53d3d;
+    }
+
+    .ion-tags-input.active.tit-border-color.danger {
+      border-bottom-color: #f53d3d;
     }
 
     .iti-tag-color.dark {
       background-color: #222;
     }
 
+    .ion-tags-input.active.tit-border-color.dark {
+      border-bottom-color: #222;
+    }
+
     .iti-tag-color.warn {
       background-color: #ffc125;
+    }
+
+    .ion-tags-input.active.tit-border-color.warn {
+      border-bottom-color: #ffc125;
     }
 
     .iti-tag-color.gray {
       background-color: #767676;
     }
 
+    .ion-tags-input.active.tit-border-color.gray {
+      border-bottom-color: #767676;
+    }
+
     .iti-tag-color.purple {
       background-color: #7e60ff;
+    }
+
+    .ion-tags-input.active.tit-border-color.purple {
+      border-bottom-color: #7e60ff;
     }
 
   `],
