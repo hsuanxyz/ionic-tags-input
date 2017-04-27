@@ -11,6 +11,7 @@ export class HomePage {
   items3 = ['TypeScript', 'Angular', 'Ionic'];
   items4 = ['TypeScript', 'Angular', 'Ionic'];
   items5 = ['TypeScript', 'Angular', 'Ionic'];
+  items6 = ['TypeScript', 'Angular', 'Ionic'];
   constructor(public navCtrl: NavController) {
 
   }

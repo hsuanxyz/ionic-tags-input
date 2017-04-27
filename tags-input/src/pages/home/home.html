@@ -16,7 +16,6 @@
     (onChange)="onChange($event)">
   </ion-tags-input>
 
-
   <ion-list-header>
     Separate with comma
   </ion-list-header>
@@ -64,7 +63,14 @@
     [maxTags]="5">
   </ion-tags-input>
 
+  <ion-list-header>
+    Readonly
+  </ion-list-header>
 
+  <ion-tags-input
+    [(ngModel)]="items6"
+    [readonly]="true">
+  </ion-tags-input>
 
 
 

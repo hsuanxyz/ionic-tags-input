@@ -22,15 +22,19 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   selector: 'ion-tags-input',
   providers: [CITY_PICKER_VALUE_ACCESSOR],
   template: `
-    <div [class]="'ion-tags-input tit-border-color ' + +color" [class.active]="_isFocus">
+    <div [class]="'ion-tags-input tit-border-color '  + (readonly ? 'readonly' : color)" [class.active]="_isFocus">
       <div class="iti-tags-wrap">
         <span *ngFor="let tag of _tags; let $index = index"
               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
           {{tag}}
-          <a [hidden]="hideRemove" [class]="'iti-tag-rm iti-tag-color ' + color" (click)="btnRemoveTag($index)"></a>
+          <a [hidden]="hideRemove || readonly" 
+             [class]="'iti-tag-rm iti-tag-color ' + color"
+             (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
       <input #tagsInput
+             [hidden]="readonly"
+             [disabled]="readonly"
              class="iti-input" [type]="type"
              [placeholder]="placeholder"
              [(ngModel)]="_editTag"
@@ -108,6 +112,14 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
       color: #000;
     }
 
+    .ion-tags-input.tit-border-color.readonly {
+      border: none;
+    }
+
+    .ion-tags-input.active.tit-border-color.readonly {
+      border: none;
+    }
+    
     .ion-tags-input.active.tit-border-color.light {
       border-bottom-color: #bcbcbc;
     }
@@ -173,6 +185,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @ViewChild('tagsInput') input: any;
 
   @Input() mode: string = '';
+  @Input() readonly: boolean = false;
   @Input() color: string = '';
   @Input() hideRemove: boolean = false;
   @Input() maxTags: number = -1;
