@@ -17,6 +17,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     _onTouched: Function;
     input: any;
     mode: string;
+    readonly: boolean;
     color: string;
     hideRemove: boolean;
     maxTags: number;
