@@ -151,6 +151,7 @@ export class YourPage {
 | --------------- | ------------- | ----------- |
 | mode            | String        | platform style `md ios wp`     |
 | color           | String        | color style `light secondary danger dark warn gray purple`   |
+| readonly        | Boolean       | readonly |
 | placeholder     | String        | input placeholder |
 | type            | String        | input type    |
 | maxTags         | number        | sets tags max number, `-1` unlimited |

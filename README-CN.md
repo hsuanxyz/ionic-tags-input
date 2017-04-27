@@ -154,6 +154,7 @@ export class YourPage {
 | mode            | String        | 设置平台样式 `md ios wp`     |
 | color           | String        | 设置颜色 `light secondary danger dark warn gray purple`   |
 | placeholder     | String        | 设置 input placeholder |
+| readonly        | Boolean       | 只读 |
 | type            | String        | 设置 input type    |
 | maxTags         | number        | 设置最大数, `-1` 无限制 |
 | hideRemove      | Boolean       | 隐藏移除按钮  |
