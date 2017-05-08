@@ -8,6 +8,7 @@ import { NgModule, ModuleWithProviders } from '@angular/core';
 
 import { IonTagsInput } from "./ion-tags-input";
 
+/** @hidden */
 @NgModule({
   imports: [
     CommonModule,
