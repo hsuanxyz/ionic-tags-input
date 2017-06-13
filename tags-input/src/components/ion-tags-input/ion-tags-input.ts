@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, HostListener,OnInit, ViewChild, forwardRef} from '@angular/core';
+import {Component, ChangeDetectorRef, Input, Output, EventEmitter, HostListener,OnInit, ViewChild, forwardRef} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -74,7 +74,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(public plt: Platform) {}
+  constructor(public plt: Platform, public ref: ChangeDetectorRef,) {}
 
   ngOnInit(): void {
     if(this.mode === ''){
@@ -90,13 +90,16 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     let tagsEve = this.tags.nativeElement.children;
 
     for( let eve of tagsEve){
-      eve.style['backgroundColor'] = this.getRandomColor()
+      if(eve.style['backgroundColor'] === ''){
+        eve.style['backgroundColor'] = this.getRandomColor()
+      }
     }
   }
 
   addRandomColor() {
     if(this.color !== 'random') return;
     let tagsEve = this.tags.nativeElement.children;
+    console.log(tagsEve);
     tagsEve[tagsEve.length-1].style['backgroundColor'] = this.getRandomColor()
   }
 
@@ -164,7 +167,10 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
       return;
     }
     this._tags.push(tagStr.trim() );
+    this.ref.detectChanges();
+    this.addRandomColor();
     this.onChange.emit(this._tags);
+
     this._editTag = '';
   }
 
@@ -222,6 +228,9 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   private setValue(val: any): any {
     this._tags = val;
+    if(this._tags){
+      this._onChanged(this._tags);
+    }
   }
 
   private initMode(): any{
