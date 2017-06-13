@@ -53,6 +53,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _isFocus: boolean = false;
   _onChanged: Function;
   _onTouched: Function;
+  _colors = []
 
   @ViewChild('tagsInput') input: any;
   @ViewChild('tags') tags: any;
