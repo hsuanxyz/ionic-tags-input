@@ -90,11 +90,14 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     let tagsEve = this.tags.nativeElement.children;
 
     for( let eve of tagsEve){
-      eve.style['backgroundColor'] = '#eee'
+      eve.style['backgroundColor'] = this.getRandomColor()
     }
+  }
 
-    console.log(tagsEve)
-
+  addRandomColor() {
+    if(this.color !== 'random') return;
+    let tagsEve = this.tags.nativeElement.children;
+    tagsEve[tagsEve.length-1].style['backgroundColor'] = this.getRandomColor()
   }
 
   keyAddTag(): any{
