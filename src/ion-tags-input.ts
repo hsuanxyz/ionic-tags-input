@@ -1,4 +1,4 @@
-import {Component, Input, Output, EventEmitter, HostListener,OnInit, ViewChild, forwardRef} from '@angular/core';
+import {Component, ChangeDetectorRef, Input, Output, EventEmitter, HostListener,OnInit, ViewChild, forwardRef} from '@angular/core';
 import {
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
@@ -23,12 +23,12 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   providers: [CITY_PICKER_VALUE_ACCESSOR],
   template: `
     <div [class]="'ion-tags-input tit-border-color '  + (readonly ? 'readonly' : color)" [class.active]="_isFocus">
-      <div class="iti-tags-wrap">
-        <span *ngFor="let tag of _tags; let $index = index"
-              [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
+      <div class="iti-tags-wrap" #tags>
+        <span  *ngFor="let tag of _tags; let $index = index;"
+               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode">
           {{tag}}
           <a [hidden]="hideRemove || readonly" 
-             [class]="'iti-tag-rm iti-tag-color ' + color"
+             class="iti-tag-rm"
              (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
@@ -40,7 +40,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
              [(ngModel)]="_editTag"
              (blur)="_blur()"
              (focus)="_focus()"
-             (keyup.backspace)="keyRemoveTag()"
+             (keyup.backspace)="keyRemoveTag($event); false"
              (keyup)="separatorStrAddTag()"
              (keyup.enter)="keyAddTag()">
     </div>
@@ -53,8 +53,10 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _isFocus: boolean = false;
   _onChanged: Function;
   _onTouched: Function;
+  _colors = ['#4a8bfc', '#32db64', '#f53d3d', '#ffc125', '#767676', '#7e60ff', '#222', '#bcbcbc'];
 
   @ViewChild('tagsInput') input: any;
+  @ViewChild('tags') tags: any;
 
   @Input() mode: string = '';
   @Input() readonly: boolean = false;
@@ -72,14 +74,33 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
 
-  constructor(public plt: Platform) {}
+  constructor(public plt: Platform, public ref: ChangeDetectorRef,) {}
 
   ngOnInit(): void {
     if(this.mode === ''){
       this.plt.ready().then(()=>{
         this.initMode();
+        this.initRandomColor();
       })
     }
+  }
+
+  initRandomColor() {
+    if(this.color !== 'random') return;
+    let tagsEve = this.tags.nativeElement.children;
+
+    for( let eve of tagsEve){
+      if(eve.style['backgroundColor'] === ''){
+        eve.style['backgroundColor'] = this.getRandomColor()
+      }
+    }
+  }
+
+  addRandomColor() {
+    if(this.color !== 'random') return;
+    let tagsEve = this.tags.nativeElement.children;
+    console.log(tagsEve);
+    tagsEve[tagsEve.length-1].style['backgroundColor'] = this.getRandomColor()
   }
 
   keyAddTag(): any{
@@ -146,7 +167,10 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
       return;
     }
     this._tags.push(tagStr.trim() );
+    this.ref.detectChanges();
+    this.addRandomColor();
     this.onChange.emit(this._tags);
+
     this._editTag = '';
   }
 
@@ -204,11 +228,19 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   private setValue(val: any): any {
     this._tags = val;
+    if(this._tags){
+      this._onChanged(this._tags);
+    }
   }
 
   private initMode(): any{
     this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
   }
 
+  private getRandomColor() {
+    const max = this._colors.length + 1;
+    let index = Math.floor(Math.random() * max);
+    return this._colors[index]
+  }
 
 }

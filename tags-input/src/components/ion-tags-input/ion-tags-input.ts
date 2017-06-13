@@ -130,7 +130,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     }
   }
 
-  keyRemoveTag($event): any{
+  keyRemoveTag(): any{
     if(!this.canBackspaceRemove ) return;
     if(this._editTag === ''){
       this.removeTag(-1);
