@@ -94,7 +94,10 @@ export class YourPage {
 <ion-tags-input [(ngModel)]="tags" [mode]="'secondary'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'danger'"></ion-tags-input>
 ```
+
 全部颜色: `light secondary danger dark warn gray purple`
+
+特殊颜色: `random` 随机颜色
 
 隐藏移除按钮
 
@@ -152,7 +155,7 @@ export class YourPage {
 | Name            | Type          | Description |
 | --------------- | ------------- | ----------- |
 | mode            | String        | 设置平台样式 `md ios wp`     |
-| color           | String        | 设置颜色 `light secondary danger dark warn gray purple`   |
+| color           | String        | 设置颜色 `light secondary danger dark warn gray purple random`   |
 | placeholder     | String        | 设置 input placeholder |
 | readonly        | Boolean       | 只读 |
 | type            | String        | 设置 input type    |

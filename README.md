@@ -96,6 +96,8 @@ Setting color:
 ```
 All color: `light secondary danger dark warn gray purple`
 
+Special color: `random`
+
 Hide remove button
 
 ```
@@ -150,7 +152,7 @@ export class YourPage {
 | Name            | Type          | Description |
 | --------------- | ------------- | ----------- |
 | mode            | String        | platform style `md ios wp`     |
-| color           | String        | color style `light secondary danger dark warn gray purple`   |
+| color           | String        | color style `light secondary danger dark warn gray purple random`   |
 | readonly        | Boolean       | readonly |
 | placeholder     | String        | input placeholder |
 | type            | String        | input type    |
