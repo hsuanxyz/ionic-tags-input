@@ -17,6 +17,16 @@
   </ion-tags-input>
 
   <ion-list-header>
+    Random Color
+  </ion-list-header>
+
+  <ion-tags-input
+    [(ngModel)]="items"
+    [color]="'random'"
+    (onChange)="onChange($event)">
+  </ion-tags-input>
+
+  <ion-list-header>
     Separate with comma
   </ion-list-header>
   <ion-tags-input

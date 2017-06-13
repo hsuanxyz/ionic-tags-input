@@ -23,12 +23,12 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   providers: [CITY_PICKER_VALUE_ACCESSOR],
   template: `
     <div [class]="'ion-tags-input tit-border-color '  + (readonly ? 'readonly' : color)" [class.active]="_isFocus">
-      <div class="iti-tags-wrap">
-        <span *ngFor="let tag of _tags; let $index = index"
-              [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode ">
+      <div class="iti-tags-wrap" #tags>
+        <span  *ngFor="let tag of _tags; let $index = index;"
+               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode">
           {{tag}}
           <a [hidden]="hideRemove || readonly" 
-             [class]="'iti-tag-rm iti-tag-color ' + color"
+             class="iti-tag-rm"
              (click)="btnRemoveTag($index)"></a>
        </span>
       </div>
@@ -40,7 +40,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
              [(ngModel)]="_editTag"
              (blur)="_blur()"
              (focus)="_focus()"
-             (keyup.backspace)="keyRemoveTag()"
+             (keyup.backspace)="keyRemoveTag($event); false"
              (keyup)="separatorStrAddTag()"
              (keyup.enter)="keyAddTag()">
     </div>
@@ -55,6 +55,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _onTouched: Function;
 
   @ViewChild('tagsInput') input: any;
+  @ViewChild('tags') tags: any;
 
   @Input() mode: string = '';
   @Input() readonly: boolean = false;
@@ -78,8 +79,21 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     if(this.mode === ''){
       this.plt.ready().then(()=>{
         this.initMode();
+        this.initRandomColor();
       })
     }
+  }
+
+  initRandomColor() {
+    if(this.color !== 'random') return;
+    let tagsEve = this.tags.nativeElement.children;
+
+    for( let eve of tagsEve){
+      eve.style['backgroundColor'] = '#eee'
+    }
+
+    console.log(tagsEve)
+
   }
 
   keyAddTag(): any{
@@ -109,7 +123,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     }
   }
 
-  keyRemoveTag(): any{
+  keyRemoveTag($event): any{
     if(!this.canBackspaceRemove ) return;
     if(this._editTag === ''){
       this.removeTag(-1);
