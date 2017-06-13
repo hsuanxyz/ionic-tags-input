@@ -225,5 +225,10 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
   }
 
+  private getRandomColor() {
+    const max = this._colors.length + 1;
+    let index = Math.floor(Math.random() * max);
+    return this._colors[index]
+  }
 
 }
