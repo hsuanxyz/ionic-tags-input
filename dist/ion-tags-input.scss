@@ -1,36 +1,70 @@
 ion-tags-input{
 
-  $tags-color :(
-    default: '#4a8bfc',
-    secondary: '#32db64',
-    danger: '#f53d3d',
-    warn: '#ffc125',
-    gray: '#767676',
-    purple: '#7e60ff',
-    dark: '#222',
-    light: '#bcbcbc',
+  $tags-color: (
+    default: #4a8bfc,
+    secondary: #32db64,
+    danger: #f53d3d,
+    warn: #ffc125,
+    gray: #767676,
+    purple: #7e60ff,
+    dark: #222,
+    light: #bcbcbc,
   );
+
+  @mixin tags($b-color: default, $t-color: white) {
+
+    &.active.tit-border-color{
+      border-bottom-color: color($tags-color, $b-color);
+    }
+
+    .iti-tag-color {
+      background-color: color($tags-color, $b-color);
+      color: $t-color;
+    }
+  }
 
   .ion-tags-input {
     border-bottom: 1px solid #e5e5e5;
     transition: border-bottom-color 0.15s ease;
     padding: 5px;
-  }
 
-  .ion-tags-input.active {
-    border-bottom-color: #4a8bfc;
-  }
+    &.active{
+      border-bottom-color: color($tags-color, default);
+    }
 
-  .ion-tags-input .iti-tag {
-    display: block;
-    float: left;
-    font-family: sans-serif;
-    font-size: 1.3rem;
-    font-weight: 400;
-    margin-right: 5px;
-    margin-bottom: 5px;
-    padding: 4px 10px;
-    max-height: 30px;
+    .iti-tag {
+      display: block;
+      float: left;
+      font-family: sans-serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      margin-right: 5px;
+      margin-bottom: 5px;
+      padding: 4px 10px;
+      max-height: 30px;
+      border-radius: 0;
+
+      &.iti-tag-ios {
+        border-radius: 13px;
+      }
+
+      &.iti-tag-md {
+        border-radius: 4px;
+      }
+    }
+
+    .iti-input {
+      background: transparent;
+      border: 0;
+      color: #777;
+      font-family: sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      outline: none;
+      padding: 5px;
+      width: 80px;
+    }
+
   }
 
   .ion-tags-input a.iti-tag-rm::before {
@@ -40,101 +74,41 @@ ion-tags-input{
     color: #fff;
   }
 
-  .ion-tags-input .iti-input {
-    background: transparent;
-    border: 0;
-    color: #777;
-    font-family: sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    outline: none;
-    padding: 5px;
-    width: 80px;
-  }
-
-  .ion-tags-input .iti-tag.iti-tag-ios {
-    border-radius: 13px;
-  }
-
-  .ion-tags-input .iti-tag.iti-tag-md {
-    border-radius: 4px;
-  }
-
-  .ion-tags-input .iti-tag.iti-tag-wp {
-    border-radius: 0;
-  }
-
-  .iti-tag-color {
-    background-color: #4a8bfc;
-    color: white;
-  }
-
-  .ion-tags-input.active.tit-border-color {
-    border-bottom-color: #4a8bfc;
-  }
-
-  .iti-tag-color.light {
-    background-color: #f4f4f4;
-    color: #000;
-  }
-
-  .ion-tags-input.tit-border-color.readonly {
-    border: none;
-  }
-
+  .ion-tags-input.tit-border-color.readonly,
   .ion-tags-input.active.tit-border-color.readonly {
     border: none;
   }
 
-  .ion-tags-input.active.tit-border-color.light {
-    border-bottom-color: #bcbcbc;
+  .ion-tags-input {
+    @include tags()
   }
 
-  .iti-tag-color.secondary {
-    background-color: #32db64;
+  .ion-tags-input.light {
+    @include tags(light, #000)
   }
 
-  .ion-tags-input.active.tit-border-color.secondary {
-    border-bottom-color: #32db64;
+  .ion-tags-input.secondary {
+    @include tags(secondary)
   }
 
-  .iti-tag-color.danger {
-    background-color: #f53d3d;
+  .ion-tags-input.danger {
+    @include tags(danger)
   }
 
-  .ion-tags-input.active.tit-border-color.danger {
-    border-bottom-color: #f53d3d;
+  .ion-tags-input.purple {
+    @include tags(purple)
   }
 
-  .iti-tag-color.dark {
-    background-color: #222;
+  .ion-tags-input.gray {
+    @include tags(gray)
   }
 
-  .ion-tags-input.active.tit-border-color.dark {
-    border-bottom-color: #222;
+  .ion-tags-input.warn {
+    @include tags(warn)
   }
 
-  .iti-tag-color.warn {
-    background-color: #ffc125;
+  .ion-tags-input.dark {
+    @include tags(dark)
   }
 
-  .ion-tags-input.active.tit-border-color.warn {
-    border-bottom-color: #ffc125;
-  }
-
-  .iti-tag-color.gray {
-    background-color: #767676;
-  }
-
-  .ion-tags-input.active.tit-border-color.gray {
-    border-bottom-color: #767676;
-  }
-
-  .iti-tag-color.purple {
-    background-color: #7e60ff;
-  }
-
-  .ion-tags-input.active.tit-border-color.purple {
-    border-bottom-color: #7e60ff;
-  }
 }
