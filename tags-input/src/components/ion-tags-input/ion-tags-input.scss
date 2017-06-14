@@ -64,20 +64,6 @@ ion-tags-input{
     border-radius: 0;
   }
 
-  .iti-tag-color {
-    background-color: color($tags-color, default);
-    color: white;
-  }
-
-  .ion-tags-input.active.tit-border-color {
-    border-bottom-color: color($tags-color, default);
-  }
-
-  .iti-tag-color.light {
-    background-color: color($tags-color, light);
-    color: #000;
-  }
-
   .ion-tags-input.tit-border-color.readonly {
     border: none;
   }
@@ -86,55 +72,66 @@ ion-tags-input{
     border: none;
   }
 
+
+
+  .ion-tags-input {
+
+    &.active.tit-border-color{
+      border-bottom-color: color($tags-color, default);
+    }
+
+    .iti-tag-color {
+      background-color: color($tags-color, default);
+      color: white;
+    }
+
+  }
+
+  .iti-tag-color.light {
+    background-color: color($tags-color, light);
+    color: #000;
+  }
+
+
   .ion-tags-input.active.tit-border-color.light {
     border-bottom-color: #bcbcbc;
   }
 
-  .iti-tag-color.secondary {
-    background-color: color($tags-color, secondary);
+  @mixin tags($b-color, $t-color: white) {
+
+    &.active.tit-border-color{
+      border-bottom-color: color($tags-color, $b-color);
+    }
+
+    .iti-tag-color {
+      background-color: color($tags-color, $b-color);
+      color: $t-color;
+    }
   }
 
-  .ion-tags-input.active.tit-border-color.secondary {
-    border-bottom-color: color($tags-color, secondary);
+
+  .ion-tags-input.secondary {
+    @include tags(secondary)
   }
 
-  .iti-tag-color.danger {
-    background-color: color($tags-color, danger);
+  .ion-tags-input.danger {
+    @include tags(danger)
   }
 
-  .ion-tags-input.active.tit-border-color.danger {
-    border-bottom-color: color($tags-color, danger);
+  .ion-tags-input.purple {
+    @include tags(purple)
   }
 
-  .iti-tag-color.dark {
-    background-color: #222;
+  .ion-tags-input.gray {
+    @include tags(gray)
   }
 
-  .ion-tags-input.active.tit-border-color.dark {
-    border-bottom-color: #222;
+  .ion-tags-input.warn {
+    @include tags(warn)
   }
 
-  .iti-tag-color.warn {
-    background-color: color($tags-color, warn);
+  .ion-tags-input.dark {
+    @include tags(dark)
   }
 
-  .ion-tags-input.active.tit-border-color.warn {
-    border-bottom-color: color($tags-color, warn);
-  }
-
-  .iti-tag-color.gray {
-    background-color: color($tags-color, gray);
-  }
-
-  .ion-tags-input.active.tit-border-color.gray {
-    border-bottom-color: color($tags-color, gray);
-  }
-
-  .iti-tag-color.purple {
-    background-color: color($tags-color, purple);
-  }
-
-  .ion-tags-input.active.tit-border-color.purple {
-    border-bottom-color: color($tags-color, purple);
-  }
 }
