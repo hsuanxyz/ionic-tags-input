@@ -102,7 +102,7 @@ export class YourPage {
 隐藏移除按钮
 
 ```
-<ion-tags-input [(ngModel)]="tags" [hideRemove]="ture"></ion-tags-input>
+<ion-tags-input [(ngModel)]="tags" [hideRemove]="true"></ion-tags-input>
 ```
 
 ### 分割符

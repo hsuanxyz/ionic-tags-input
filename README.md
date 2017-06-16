@@ -101,7 +101,7 @@ Special color: `random`
 Hide remove button
 
 ```
-<ion-tags-input [(ngModel)]="tags" [hideRemove]="ture"></ion-tags-input>
+<ion-tags-input [(ngModel)]="tags" [hideRemove]="true"></ion-tags-input>
 ```
 
 ### Separator
