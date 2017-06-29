@@ -14,7 +14,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     _editTag: string;
     _tags: Array<string>;
     _isFocus: boolean;
-    _onChanged: Function;
+    _onChanged: (_: any) => {};
     _onTouched: Function;
     _colors: string[];
     input: any;
@@ -50,7 +50,6 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     writeValue(val: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
-    private setValue(val);
     private initMode();
     private getRandomColor();
 }

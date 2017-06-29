@@ -125,6 +125,7 @@ export var IonTagsInput = (function () {
         this.ref.detectChanges();
         this.addRandomColor();
         this.onChange.emit(this._tags);
+        this._onChanged(this._tags);
         this._editTag = '';
     };
     IonTagsInput.prototype.removeTag = function ($index) {
@@ -132,10 +133,12 @@ export var IonTagsInput = (function () {
             if ($index === -1) {
                 this._tags.pop();
                 this.onChange.emit(this._tags);
+                this._onChanged(this._tags);
             }
             else if ($index > -1) {
                 this._tags.splice($index, 1);
                 this.onChange.emit(this._tags);
+                this._onChanged(this._tags);
             }
         }
     };
@@ -167,16 +170,9 @@ export var IonTagsInput = (function () {
     };
     IonTagsInput.prototype.registerOnChange = function (fn) {
         this._onChanged = fn;
-        this.setValue(this._tags);
     };
     IonTagsInput.prototype.registerOnTouched = function (fn) {
         this._onTouched = fn;
-    };
-    IonTagsInput.prototype.setValue = function (val) {
-        this._tags = val;
-        if (this._tags) {
-            this._onChanged(this._tags);
-        }
     };
     IonTagsInput.prototype.initMode = function () {
         this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';

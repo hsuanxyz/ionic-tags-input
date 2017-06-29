@@ -51,7 +51,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _editTag: string = '';
   _tags: Array<string> = [];
   _isFocus: boolean = false;
-  _onChanged: Function;
+  _onChanged: (_: any) => { };
   _onTouched: Function;
   _colors = ['#4a8bfc', '#32db64', '#f53d3d', '#ffc125', '#767676', '#7e60ff', '#222', '#bcbcbc'];
 
@@ -170,6 +170,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     this.ref.detectChanges();
     this.addRandomColor();
     this.onChange.emit(this._tags);
+    this._onChanged(this._tags);
 
     this._editTag = '';
   }
@@ -179,9 +180,11 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
       if($index === -1){
         this._tags.pop();
         this.onChange.emit(this._tags);
+        this._onChanged(this._tags);
       }else if ($index > -1) {
         this._tags.splice($index,1);
         this.onChange.emit(this._tags);
+        this._onChanged(this._tags);
       }
     }
   }
@@ -219,18 +222,10 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   registerOnChange(fn: any): void {
     this._onChanged = fn;
-    this.setValue(this._tags);
   }
 
   registerOnTouched(fn: any): void {
     this._onTouched = fn;
-  }
-
-  private setValue(val: any): any {
-    this._tags = val;
-    if(this._tags){
-      this._onChanged(this._tags);
-    }
   }
 
   private initMode(): any{
