@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonTagsInput } from "./ion-tags-input";
 /** @hidden */
 export var IonTagsInputModule = (function () {
@@ -23,7 +23,8 @@ export var IonTagsInputModule = (function () {
                     ],
                     exports: [
                         IonTagsInput
-                    ]
+                    ], 
+                schemas: [NO_ERRORS_SCHEMA]
                 },] },
     ];
     /** @nocollapse */
