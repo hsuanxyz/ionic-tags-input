@@ -19,7 +19,7 @@ A ionic tags input component for ionic2
 ## Use
  import the module:
 
- ```
+ ```typescript
  ...
  import {IonTagsInputModule} from "ionic-tags-input";
 
@@ -39,11 +39,11 @@ export class AppModule {}
 
 ### Basic
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" (onChange)="onChange($event)"></ion-tags-input>
 ```
 
-```
+```typescript
 export class YourPage {
 
   tags = ['Ionic', 'Angular', 'TypeScript'];
@@ -59,7 +59,7 @@ export class YourPage {
 
 set placeholder
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [placeholder]="'add tag'"></ion-tags-input>
 ```
 
@@ -67,13 +67,13 @@ set input type
 
 *** Can not be verified, but can set the keyboard type ***
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [type]="'email'"></ion-tags-input>
 ```
 
 can not be repeated
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [once]="'true'"></ion-tags-input>
 ```
 
@@ -81,7 +81,7 @@ can not be repeated
 
 Setting mode
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [mode]="'md'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'ios'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'wp'"></ion-tags-input>
@@ -89,7 +89,7 @@ Setting mode
 
 Setting color:
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [mode]="'light'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'secondary'"></ion-tags-input>
 <ion-tags-input [(ngModel)]="tags" [mode]="'danger'"></ion-tags-input>
@@ -100,14 +100,14 @@ Special color: `random`
 
 Hide remove button
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [hideRemove]="true"></ion-tags-input>
 ```
 
 ### Separator
 
 Use separator submit input
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [separatorStr]="','"></ion-tags-input>
 ```
 
@@ -115,13 +115,13 @@ Use separator submit input
 
 Use `Backspace` remove tag
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [canBackspaceRemove]="true"></ion-tags-input>
 ```
 
 Use `Enter` submit input
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [canEnterAdd]="true"></ion-tags-input>
 ```
 
@@ -129,11 +129,11 @@ Use `Enter` submit input
 
 A function whose argument is a string, returns a boolean value
 
-```
+```html
 <ion-tags-input [(ngModel)]="tags" [verifyMethod]="verifyTag"></ion-tags-input>
 ```
 
-```
+```typescript
 export class YourPage {
 
   tags = ['Ionic', 'Angular', 'TypeScript'];
