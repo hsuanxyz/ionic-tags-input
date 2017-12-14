@@ -13,6 +13,8 @@
 
   <ion-tags-input
     [(ngModel)]="items"
+    (ionFocus)="onFocus($event)"
+    (ionBlur)="onBlur($event)"
     (onChange)="onChange($event)">
   </ion-tags-input>
 
@@ -70,6 +72,7 @@
   <ion-tags-input
     [(ngModel)]="items5"
     [color]="'secondary'"
+    [once]="false"
     [maxTags]="5">
   </ion-tags-input>
 
@@ -81,8 +84,5 @@
     [(ngModel)]="items6"
     [readonly]="true">
   </ion-tags-input>
-
-
-
 
 </ion-content>

@@ -12,6 +12,7 @@ export class HomePage {
   items4 = ['TypeScript', 'Angular', 'Ionic'];
   items5 = ['TypeScript', 'Angular', 'Ionic'];
   items6 = ['TypeScript', 'Angular', 'Ionic'];
+  items7 = [];
   constructor(public navCtrl: NavController) {
 
   }
@@ -23,4 +24,14 @@ export class HomePage {
   onChange(val){
     console.log(val)
   }
+
+  onFocus() {
+    console.log('Focus')
+  }
+
+  onBlur() {
+    console.log('Blur')
+  }
+
+
 }
