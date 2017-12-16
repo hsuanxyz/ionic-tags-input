@@ -14,7 +14,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     _editTag: string;
     _tags: Array<string>;
     _isFocus: boolean;
-    _onChanged: (_: any) => {};
+    _onChanged: Function;
     _onTouched: Function;
     _colors: string[];
     input: any;
@@ -32,6 +32,8 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     canBackspaceRemove: boolean;
     verifyMethod: (tagSrt: string) => boolean;
     onChange: EventEmitter<any>;
+    ionFocus: EventEmitter<any>;
+    ionBlur: EventEmitter<any>;
     constructor(plt: Platform, ref: ChangeDetectorRef);
     ngOnInit(): void;
     initRandomColor(): void;
@@ -50,6 +52,7 @@ export declare class IonTagsInput implements ControlValueAccessor, OnInit {
     writeValue(val: any): void;
     registerOnChange(fn: any): void;
     registerOnTouched(fn: any): void;
+    private setValue(val);
     private initMode();
     private getRandomColor();
 }

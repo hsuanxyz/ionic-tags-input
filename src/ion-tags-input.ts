@@ -39,7 +39,6 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
              [placeholder]="placeholder"
              [(ngModel)]="_editTag"
              (blur)="_blur()"
-             (focus)="_focus()"
              (keyup.backspace)="keyRemoveTag($event); false"
              (keyup)="separatorStrAddTag()"
              (keyup.enter)="keyAddTag()">
@@ -51,7 +50,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _editTag: string = '';
   _tags: Array<string> = [];
   _isFocus: boolean = false;
-  _onChanged: (_: any) => { };
+  _onChanged: Function;
   _onTouched: Function;
   _colors = ['#4a8bfc', '#32db64', '#f53d3d', '#ffc125', '#767676', '#7e60ff', '#222', '#bcbcbc'];
 
@@ -73,6 +72,8 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
+  @Output() ionFocus: EventEmitter<any> = new EventEmitter();
+  @Output() ionBlur: EventEmitter<any> = new EventEmitter();
 
   constructor(public plt: Platform, public ref: ChangeDetectorRef,) {}
 
@@ -99,7 +100,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   addRandomColor() {
     if(this.color !== 'random') return;
     let tagsEve = this.tags.nativeElement.children;
-    console.log(tagsEve);
     tagsEve[tagsEve.length-1].style['backgroundColor'] = this.getRandomColor()
   }
 
@@ -170,7 +170,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     this.ref.detectChanges();
     this.addRandomColor();
     this.onChange.emit(this._tags);
-    this._onChanged(this._tags);
 
     this._editTag = '';
   }
@@ -180,11 +179,9 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
       if($index === -1){
         this._tags.pop();
         this.onChange.emit(this._tags);
-        this._onChanged(this._tags);
       }else if ($index > -1) {
         this._tags.splice($index,1);
         this.onChange.emit(this._tags);
-        this._onChanged(this._tags);
       }
     }
   }
@@ -198,21 +195,27 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   @HostListener('click', ['$event'])
-  private _click(ev: UIEvent):any {
-    this.input.nativeElement.focus();
-    this._isFocus = true;
+  private _click(ev: UIEvent): any {
+    if (!this._isFocus) {
+
+    }
+    this._focus();
     ev.preventDefault();
     ev.stopPropagation();
   }
 
   private _blur(): any{
-    this.input.nativeElement.blur();
-    this._isFocus = false;
+    if (this._isFocus) {
+      this._isFocus = false;
+      this.ionBlur.emit(this._tags);
+    }
   }
 
   private _focus(): any{
     if(!this._isFocus){
       this._isFocus = true;
+      this.input.nativeElement.focus();
+      this.ionFocus.emit(this._tags);
     }
   }
 
@@ -222,10 +225,18 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   registerOnChange(fn: any): void {
     this._onChanged = fn;
+    this.setValue(this._tags);
   }
 
   registerOnTouched(fn: any): void {
     this._onTouched = fn;
+  }
+
+  private setValue(val: any): any {
+    this._tags = val;
+    if(this._tags){
+      this._onChanged(this._tags);
+    }
   }
 
   private initMode(): any{

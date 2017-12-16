@@ -23,8 +23,8 @@ export var IonTagsInputModule = (function () {
                     ],
                     exports: [
                         IonTagsInput
-                    ], 
-                schemas: [NO_ERRORS_SCHEMA]
+                    ],
+                    schemas: [NO_ERRORS_SCHEMA]
                 },] },
     ];
     /** @nocollapse */

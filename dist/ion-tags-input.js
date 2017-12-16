@@ -32,6 +32,8 @@ export var IonTagsInput = (function () {
         this.canEnterAdd = true;
         this.canBackspaceRemove = true;
         this.onChange = new EventEmitter();
+        this.ionFocus = new EventEmitter();
+        this.ionBlur = new EventEmitter();
     }
     IonTagsInput.prototype.ngOnInit = function () {
         var _this = this;
@@ -57,7 +59,6 @@ export var IonTagsInput = (function () {
         if (this.color !== 'random')
             return;
         var tagsEve = this.tags.nativeElement.children;
-        console.log(tagsEve);
         tagsEve[tagsEve.length - 1].style['backgroundColor'] = this.getRandomColor();
     };
     IonTagsInput.prototype.keyAddTag = function () {
@@ -125,7 +126,6 @@ export var IonTagsInput = (function () {
         this.ref.detectChanges();
         this.addRandomColor();
         this.onChange.emit(this._tags);
-        this._onChanged(this._tags);
         this._editTag = '';
     };
     IonTagsInput.prototype.removeTag = function ($index) {
@@ -133,12 +133,10 @@ export var IonTagsInput = (function () {
             if ($index === -1) {
                 this._tags.pop();
                 this.onChange.emit(this._tags);
-                this._onChanged(this._tags);
             }
             else if ($index > -1) {
                 this._tags.splice($index, 1);
                 this.onChange.emit(this._tags);
-                this._onChanged(this._tags);
             }
         }
     };
@@ -151,18 +149,23 @@ export var IonTagsInput = (function () {
         });
     };
     IonTagsInput.prototype._click = function (ev) {
-        this.input.nativeElement.focus();
-        this._isFocus = true;
+        if (!this._isFocus) {
+        }
+        this._focus();
         ev.preventDefault();
         ev.stopPropagation();
     };
     IonTagsInput.prototype._blur = function () {
-        this.input.nativeElement.blur();
-        this._isFocus = false;
+        if (this._isFocus) {
+            this._isFocus = false;
+            this.ionBlur.emit(this._tags);
+        }
     };
     IonTagsInput.prototype._focus = function () {
         if (!this._isFocus) {
             this._isFocus = true;
+            this.input.nativeElement.focus();
+            this.ionFocus.emit(this._tags);
         }
     };
     IonTagsInput.prototype.writeValue = function (val) {
@@ -170,9 +173,16 @@ export var IonTagsInput = (function () {
     };
     IonTagsInput.prototype.registerOnChange = function (fn) {
         this._onChanged = fn;
+        this.setValue(this._tags);
     };
     IonTagsInput.prototype.registerOnTouched = function (fn) {
         this._onTouched = fn;
+    };
+    IonTagsInput.prototype.setValue = function (val) {
+        this._tags = val;
+        if (this._tags) {
+            this._onChanged(this._tags);
+        }
     };
     IonTagsInput.prototype.initMode = function () {
         this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
@@ -186,7 +196,7 @@ export var IonTagsInput = (function () {
         { type: Component, args: [{
                     selector: 'ion-tags-input',
                     providers: [CITY_PICKER_VALUE_ACCESSOR],
-                    template: "\n    <div [class]=\"'ion-tags-input tit-border-color '  + (readonly ? 'readonly' : color)\" [class.active]=\"_isFocus\">\n      <div class=\"iti-tags-wrap\" #tags>\n        <span  *ngFor=\"let tag of _tags; let $index = index;\"\n               [class]=\"'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode\">\n          {{tag}}\n          <a [hidden]=\"hideRemove || readonly\" \n             class=\"iti-tag-rm\"\n             (click)=\"btnRemoveTag($index)\"></a>\n       </span>\n      </div>\n      <input #tagsInput\n             [hidden]=\"readonly\"\n             [disabled]=\"readonly\"\n             class=\"iti-input\" [type]=\"type\"\n             [placeholder]=\"placeholder\"\n             [(ngModel)]=\"_editTag\"\n             (blur)=\"_blur()\"\n             (focus)=\"_focus()\"\n             (keyup.backspace)=\"keyRemoveTag($event); false\"\n             (keyup)=\"separatorStrAddTag()\"\n             (keyup.enter)=\"keyAddTag()\">\n    </div>\n  "
+                    template: "\n    <div [class]=\"'ion-tags-input tit-border-color '  + (readonly ? 'readonly' : color)\" [class.active]=\"_isFocus\">\n      <div class=\"iti-tags-wrap\" #tags>\n        <span  *ngFor=\"let tag of _tags; let $index = index;\"\n               [class]=\"'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode\">\n          {{tag}}\n          <a [hidden]=\"hideRemove || readonly\" \n             class=\"iti-tag-rm\"\n             (click)=\"btnRemoveTag($index)\"></a>\n       </span>\n      </div>\n      <input #tagsInput\n             [hidden]=\"readonly\"\n             [disabled]=\"readonly\"\n             class=\"iti-input\" [type]=\"type\"\n             [placeholder]=\"placeholder\"\n             [(ngModel)]=\"_editTag\"\n             (blur)=\"_blur()\"\n             (keyup.backspace)=\"keyRemoveTag($event); false\"\n             (keyup)=\"separatorStrAddTag()\"\n             (keyup.enter)=\"keyAddTag()\">\n    </div>\n  "
                 },] },
     ];
     /** @nocollapse */
@@ -210,6 +220,8 @@ export var IonTagsInput = (function () {
         'canBackspaceRemove': [{ type: Input },],
         'verifyMethod': [{ type: Input },],
         'onChange': [{ type: Output },],
+        'ionFocus': [{ type: Output },],
+        'ionBlur': [{ type: Output },],
         '_click': [{ type: HostListener, args: ['click', ['$event'],] },],
     };
     return IonTagsInput;

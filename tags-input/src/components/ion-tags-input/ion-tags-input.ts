@@ -38,7 +38,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
              class="iti-input" [type]="type"
              [placeholder]="placeholder"
              [(ngModel)]="_editTag"
-             (blur)="_blur($event)"
+             (blur)="_blur()"
              (keyup.backspace)="keyRemoveTag($event); false"
              (keyup)="separatorStrAddTag()"
              (keyup.enter)="keyAddTag()">
@@ -50,7 +50,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   _editTag: string = '';
   _tags: Array<string> = [];
   _isFocus: boolean = false;
-  _mouseHovering = false;
   _onChanged: Function;
   _onTouched: Function;
   _colors = ['#4a8bfc', '#32db64', '#f53d3d', '#ffc125', '#767676', '#7e60ff', '#222', '#bcbcbc'];
@@ -73,8 +72,8 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() verifyMethod: (tagSrt: string) => boolean;
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
-  @Output() ionFocus: EventEmitter<FocusEvent> = new EventEmitter();
-  @Output() ionBlur: EventEmitter<FocusEvent> = new EventEmitter();
+  @Output() ionFocus: EventEmitter<any> = new EventEmitter();
+  @Output() ionBlur: EventEmitter<any> = new EventEmitter();
 
   constructor(public plt: Platform, public ref: ChangeDetectorRef,) {}
 
@@ -200,23 +199,23 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     if (!this._isFocus) {
 
     }
-    this._focus(ev);
+    this._focus();
     ev.preventDefault();
     ev.stopPropagation();
   }
 
-  private _blur($event): any{
+  private _blur(): any{
     if (this._isFocus) {
       this._isFocus = false;
-      this.ionBlur.emit($event);
+      this.ionBlur.emit(this._tags);
     }
   }
 
-  private _focus($event): any{
+  private _focus(): any{
     if(!this._isFocus){
       this._isFocus = true;
       this.input.nativeElement.focus();
-      this.ionFocus.emit($event);
+      this.ionFocus.emit(this._tags);
     }
   }
 

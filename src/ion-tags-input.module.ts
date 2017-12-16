@@ -4,8 +4,6 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ModuleWithProviders, NO_ERRORS_SCHEMA } from '@angular/core';
-
-
 import { IonTagsInput } from "./ion-tags-input";
 
 /** @hidden */
@@ -22,7 +20,7 @@ import { IonTagsInput } from "./ion-tags-input";
   exports: [
 
     IonTagsInput
-  ], 
+  ],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class IonTagsInputModule {
