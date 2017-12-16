@@ -166,6 +166,12 @@ export class YourPage {
 | canBackspaceRemove | Boolean    | 能否使用Backspace键删除标签 |
 | verifyMethod    | Function      | 提过给标签输入的验证方法 |
 
+### Output
+| Name            | Description |
+| --------------- | ----------- |
+| ionFocus        | on focus |
+| ionBlur         | on blur |
+
 [npm-url]: https://www.npmjs.com/package/ionic-tags-input
 [npm-image]: https://img.shields.io/npm/v/ionic-tags-input.svg
 

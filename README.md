@@ -163,6 +163,12 @@ export class YourPage {
 | canBackspaceRemove | Boolean    | can usr the Backspace key remove tag |
 | verifyMethod    | Function      | use function to verify input|
 
+### Output
+| Name            | Description |
+| --------------- | ----------- |
+| ionFocus        | on focus |
+| ionBlur         | on blur |
+
 [npm-url]: https://www.npmjs.com/package/ionic-tags-input
 [npm-image]: https://img.shields.io/npm/v/ionic-tags-input.svg
 
