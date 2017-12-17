@@ -27,7 +27,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
         <span  *ngFor="let tag of _tags; let $index = index;"
                [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode">
           {{tag}}
-          <a [hidden]="hideRemove || readonly" 
+          <a [hidden]="hideRemove || readonly"
              class="iti-tag-rm"
              (click)="btnRemoveTag($index)"></a>
        </span>
@@ -192,6 +192,10 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     return tags.every( (e: string): boolean => {
       return e !== tagStr
     })
+  }
+
+  clearInputValue() {
+    this._editTag = '';
   }
 
   @HostListener('click', ['$event'])
