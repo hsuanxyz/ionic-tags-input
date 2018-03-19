@@ -90,9 +90,9 @@ Setting mode
 Setting color:
 
 ```html
-<ion-tags-input [(ngModel)]="tags" [mode]="'light'"></ion-tags-input>
-<ion-tags-input [(ngModel)]="tags" [mode]="'secondary'"></ion-tags-input>
-<ion-tags-input [(ngModel)]="tags" [mode]="'danger'"></ion-tags-input>
+<ion-tags-input [(ngModel)]="tags" [color]="'light'"></ion-tags-input>
+<ion-tags-input [(ngModel)]="tags" [color]="'secondary'"></ion-tags-input>
+<ion-tags-input [(ngModel)]="tags" [color]="'danger'"></ion-tags-input>
 ```
 All color: `light secondary danger dark warn gray purple`
 
