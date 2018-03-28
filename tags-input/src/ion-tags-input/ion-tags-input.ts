@@ -32,13 +32,12 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   template: `
     <div [class]="'ion-tags-input tit-border-color '  + (readonly ? 'readonly' : color)" [class.active]="_isFocus">
       <div class="iti-tags-wrap" #tags>
-        <span  *ngFor="let tag of _tags; let $index = index;"
-               [class]="'iti-tag iti-tag-color ' + color + ' iti-tag-' + mode">
-          {{tag}}
-          <a [hidden]="hideRemove || readonly" 
-             class="iti-tag-rm"
-             (click)="btnRemoveTag($index)"></a>
-       </span>
+        <ion-tag  *ngFor="let tag of _tags; let $index = index;"
+                  [tag]="tag"
+                  [mode]="mode"
+                  [allowClear]="!hideRemove && !readonly"
+                  (onClear)="btnRemoveTag($index)">
+        </ion-tag>
       </div>
       <input #tagsInput
              [hidden]="readonly"

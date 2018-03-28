@@ -5,16 +5,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, ModuleWithProviders, NO_ERRORS_SCHEMA } from '@angular/core';
 import { IonTagsInput } from "./ion-tags-input";
+import { IonTag } from "./ion-tag";
 
-/** @hidden */
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [IonTagsInput],
-  exports: [IonTagsInput],
+  declarations: [IonTagsInput, IonTag],
+  exports: [IonTagsInput, IonTag],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class IonTagsInputModule {
