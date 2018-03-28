@@ -13,14 +13,8 @@ import { IonTagsInput } from "./ion-tags-input";
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [
-
-    IonTagsInput
-  ],
-  exports: [
-
-    IonTagsInput
-  ],
+  declarations: [IonTagsInput],
+  exports: [IonTagsInput],
   schemas: [NO_ERRORS_SCHEMA]
 })
 export class IonTagsInputModule {

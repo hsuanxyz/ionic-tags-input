@@ -1,4 +1,4 @@
-ion-tags-input{
+ion-tags-input {
 
   $tags-color: (
     default: #4a8bfc,
@@ -13,7 +13,7 @@ ion-tags-input{
 
   @mixin tags($b-color: default, $t-color: white) {
 
-    &.active.tit-border-color{
+    &.active.tit-border-color {
       border-bottom-color: color($tags-color, $b-color);
     }
 
@@ -28,7 +28,7 @@ ion-tags-input{
     transition: border-bottom-color 0.15s ease;
     padding: 5px;
 
-    &.active{
+    &.active {
       border-bottom-color: color($tags-color, default);
     }
 
