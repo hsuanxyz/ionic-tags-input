@@ -1,114 +1,64 @@
 ion-tags-input {
 
-  $tags-color: (
-    default: #4a8bfc,
-    secondary: #32db64,
-    danger: #f53d3d,
-    warn: #ffc125,
-    gray: #767676,
-    purple: #7e60ff,
-    dark: #222,
-    light: #bcbcbc,
-  );
+  $default-color: #4a8bfc;
 
-  @mixin tags($b-color: default, $t-color: white) {
+  .iti-tag-color {
+    background-color: $default-color;
+    color: white;
+  }
 
-    &.active.tit-border-color {
-      border-bottom-color: color($tags-color, $b-color);
+  border-bottom: 1px solid #e5e5e5;
+  transition: border-bottom-color 0.15s ease;
+  padding: 5px;
+  display: block;
+
+  &.active{
+    border-bottom-color: $default-color;
+  }
+
+  .iti-tag {
+    display: block;
+    float: left;
+    font-family: sans-serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    padding: 4px 10px;
+    max-height: 30px;
+    border-radius: 0;
+
+    &.iti-tag-ios {
+      border-radius: 13px;
     }
 
-    .iti-tag-color {
-      background-color: color($tags-color, $b-color);
-      color: $t-color;
+    &.iti-tag-md {
+      border-radius: 4px;
     }
   }
 
-  .ion-tags-input {
-    border-bottom: 1px solid #e5e5e5;
-    transition: border-bottom-color 0.15s ease;
+  .iti-input {
+    background: transparent;
+    border: 0;
+    color: #777;
+    font-family: sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    outline: none;
     padding: 5px;
-
-    &.active {
-      border-bottom-color: color($tags-color, default);
-    }
-
-    .iti-tag {
-      display: block;
-      float: left;
-      font-family: sans-serif;
-      font-size: 1.3rem;
-      font-weight: 400;
-      margin-right: 5px;
-      margin-bottom: 5px;
-      padding: 4px 10px;
-      max-height: 30px;
-      border-radius: 0;
-
-      &.iti-tag-ios {
-        border-radius: 13px;
-      }
-
-      &.iti-tag-md {
-        border-radius: 4px;
-      }
-    }
-
-    .iti-input {
-      background: transparent;
-      border: 0;
-      color: #777;
-      font-family: sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      outline: none;
-      padding: 5px;
-      width: 80px;
-    }
-
+    width: 80px;
   }
 
-  .ion-tags-input a.iti-tag-rm::before {
+  a.iti-tag-rm::before {
     content: " x";
     cursor: pointer;
     font-weight: bold;
     color: #fff;
   }
 
-  .ion-tags-input.tit-border-color.readonly,
-  .ion-tags-input.active.tit-border-color.readonly {
+  &.tit-border-color.readonly,
+  &.active.tit-border-color.readonly {
     border: none;
-  }
-
-  .ion-tags-input {
-    @include tags()
-  }
-
-  .ion-tags-input.light {
-    @include tags(light, #000)
-  }
-
-  .ion-tags-input.secondary {
-    @include tags(secondary)
-  }
-
-  .ion-tags-input.danger {
-    @include tags(danger)
-  }
-
-  .ion-tags-input.purple {
-    @include tags(purple)
-  }
-
-  .ion-tags-input.gray {
-    @include tags(gray)
-  }
-
-  .ion-tags-input.warn {
-    @include tags(warn)
-  }
-
-  .ion-tags-input.dark {
-    @include tags(dark)
   }
 
 }
