@@ -25,7 +25,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   selector: 'ion-tags-input',
   providers: [CITY_PICKER_VALUE_ACCESSOR],
   template: `
-  <div class="iti-tags-wrap" #tags>
+  <div class="iti-tags-wrap">
     <ion-tag  *ngFor="let tag of _tags; let $index = index;"
               [tag]="tag"
               [mode]="mode"
@@ -232,7 +232,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   private initMode(): any {
-    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : '';
+    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : 'md';
   }
 
 }
