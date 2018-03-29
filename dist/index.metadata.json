@@ -1,1 +1,0 @@
-{"__symbolic":"module","version":1,"metadata":{},"exports":[{"from":"./ion-tags-input.module","export":["IonTagsInputModule"]},{"from":"./ion-tags-input","export":["IonTagsInput"]}]}
