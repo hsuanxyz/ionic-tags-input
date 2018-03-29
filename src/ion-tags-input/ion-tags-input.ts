@@ -50,7 +50,8 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
     '[style.border-bottom-color]': '_isFocus ? cssColor : null',
     '[class.active]': '_isFocus',
     '[class.readonly]': 'readonly'
-  }
+  },
+  styleUrls: [/** COMPONENT_STYLE */]
 })
 export class IonTagsInput implements ControlValueAccessor, OnInit {
 

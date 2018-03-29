@@ -17,7 +17,8 @@ import { TAG_COLORS } from "./colors";
     '[class.iti-tag-ios]': 'mode === "ios"',
     '[class.iti-tag-wp]': 'mode === "wp"',
     '[style.background-color]': '_color'
-  }
+  },
+  styleUrls: [/** COMPONENT_STYLE */]
 })
 export class IonTag {
 
