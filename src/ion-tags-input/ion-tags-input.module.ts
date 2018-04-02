@@ -3,24 +3,22 @@
  */
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgModule, ModuleWithProviders, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { IonTagsInput } from "./ion-tags-input";
 import { IonTag } from "./ion-tag";
+import { IonicModule } from "ionic-angular";
 
 @NgModule({
   imports: [
+    IonicModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule
   ],
   declarations: [IonTagsInput, IonTag],
   exports: [IonTagsInput, IonTag],
-  schemas: [NO_ERRORS_SCHEMA]
+  entryComponents: [IonTagsInput, IonTag]
 })
 export class IonTagsInputModule {
-  public static forRoot(): ModuleWithProviders {
-    return {
-      ngModule: IonTagsInputModule, providers: []
-    };
-  }
+
 }

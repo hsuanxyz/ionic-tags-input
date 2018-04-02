@@ -7,7 +7,8 @@ import {
   HostListener,
   OnInit,
   ViewChild,
-  forwardRef
+  forwardRef,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
@@ -46,11 +47,12 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
          (keyup.enter)="keyAddTag()">
   `,
   host: {
-    'class': 'tit-border-color',
+    'class': 'tit-border-color ion-tags-input',
     '[style.border-bottom-color]': '_isFocus ? cssColor : null',
     '[class.active]': '_isFocus',
     '[class.readonly]': 'readonly'
   },
+  encapsulation: ViewEncapsulation.None,
   styleUrls: [/** COMPONENT_STYLE */]
 })
 export class IonTagsInput implements ControlValueAccessor, OnInit {
@@ -69,7 +71,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input()
   set color(value: string) {
     if (TAG_COLORS.hasOwnProperty(value)) {
-      this.cssColor = TAG_COLORS[value];
+      this.cssColor = (TAG_COLORS[value] as string);
     } else {
       this.cssColor = value;
     }

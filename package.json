@@ -1,6 +1,6 @@
 {
   "name": "ionic-tags-input",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "A ionic tags input components",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -39,7 +39,8 @@
     "rxjs": "5.5.8",
     "sw-toolbox": "3.6.0",
     "typescript": "~2.8.1",
-    "zone.js": "0.8.20"
+    "zone.js": "0.8.20",
+    "ionic-tags-input": "file:./dist"
   },
   "repository": {
     "type": "git",

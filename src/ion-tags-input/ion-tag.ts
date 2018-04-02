@@ -36,7 +36,7 @@ export class IonTag {
       const keys = Object.keys(TAG_COLORS);
       const max = keys.length + 1;
       let index = Math.floor(Math.random() * max);
-      this._color = TAG_COLORS[keys[index]]
+      this._color = (TAG_COLORS[keys[index]] as string)
     }
   };
 

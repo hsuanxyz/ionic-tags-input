@@ -12,7 +12,7 @@ export class HomePage {
   items4 = ['TypeScript', 'Angular', 'Ionic'];
   items5 = ['TypeScript', 'Angular', 'Ionic'];
   items6 = ['TypeScript', 'Angular', 'Ionic'];
-  items7 = [];
+  items7: string[] = [];
   constructor(public navCtrl: NavController) {
 
   }
@@ -21,7 +21,7 @@ export class HomePage {
     return str !== 'ABC' && str.trim() !== '';
   }
 
-  onChange(val){
+  onChange(val: string){
     console.log(val)
   }
 
