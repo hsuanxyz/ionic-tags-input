@@ -11,7 +11,7 @@ A ionic tags input component for ionic2
 
 ![demo](https://github.com/HsuanXyz/hsuanxyz.github.io/blob/master/assets/ionic-tags-input/tags.png?raw=true)
 
-[DEMO](https://hsuanxyz.github.io/demo/ionic-tags-input/)
+[DEMO](https://stackblitz.com/edit/ionic-tags-input)
 ## Install
 
 `npm install ionic-tags-input --save`
@@ -152,7 +152,7 @@ export class YourPage {
 | Name            | Type          | Description |
 | --------------- | ------------- | ----------- |
 | mode            | String        | platform style `md ios wp`     |
-| color           | String        | color style `light secondary danger dark warn gray purple random`   |
+| color           | String        | color style `light secondary danger dark warn gray purple random` `#xxxxxx`   |
 | readonly        | Boolean       | readonly |
 | placeholder     | String        | input placeholder |
 | type            | String        | input type    |

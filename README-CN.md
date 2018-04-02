@@ -9,7 +9,7 @@
 
 ![demo](https://github.com/HsuanXyz/hsuanxyz.github.io/blob/master/assets/ionic-tags-input/tags.png?raw=true)
 
-[DEMO](https://hsuanxyz.github.io/demo/ionic-tags-input/)
+[DEMO](https://stackblitz.com/edit/ionic-tags-input)
 
 ## 安装
 
@@ -155,7 +155,7 @@ export class YourPage {
 | Name            | Type          | Description |
 | --------------- | ------------- | ----------- |
 | mode            | String        | 设置平台样式 `md ios wp`     |
-| color           | String        | 设置颜色 `light secondary danger dark warn gray purple random`   |
+| color           | String        | 设置颜色 `light secondary danger dark warn gray purple random` `#xxxxxx`  |
 | placeholder     | String        | 设置 input placeholder |
 | readonly        | Boolean       | 只读 |
 | type            | String        | 设置 input type    |
