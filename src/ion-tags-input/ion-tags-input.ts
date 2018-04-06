@@ -190,7 +190,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   @HostListener('click', ['$event'])
-  private _click(ev: UIEvent): any {
+  _click(ev: UIEvent): any {
     if (!this._isFocus) {
 
     }
@@ -199,14 +199,14 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     ev.stopPropagation();
   }
 
-  private _blur(): any {
+  _blur(): any {
     if (this._isFocus) {
       this._isFocus = false;
       this.ionBlur.emit(this._tags);
     }
   }
 
-  private _focus(): any {
+  _focus(): any {
     if (!this._isFocus) {
       this._isFocus = true;
       this.input.nativeElement.focus();
@@ -227,14 +227,14 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     this._onTouched = fn;
   }
 
-  private setValue(val: any): any {
+  setValue(val: any): any {
     this._tags = val;
     if (this._tags) {
       this._onChanged(this._tags);
     }
   }
 
-  private initMode(): any {
+  initMode(): any {
     this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : 'md';
   }
 
