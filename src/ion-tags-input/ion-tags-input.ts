@@ -41,7 +41,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
          class="iti-input" [type]="type"
          [placeholder]="placeholder"
          [(ngModel)]="_editTag"
-         (blur)="_blur()"
+         (blur)="blur()"
          (keyup.backspace)="keyRemoveTag($event); false"
          (keyup)="separatorStrAddTag()"
          (keyup.enter)="keyAddTag()">
@@ -194,19 +194,19 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     if (!this._isFocus) {
 
     }
-    this._focus();
+    this.focus();
     ev.preventDefault();
     ev.stopPropagation();
   }
 
-  _blur(): any {
+  blur(): any {
     if (this._isFocus) {
       this._isFocus = false;
       this.ionBlur.emit(this._tags);
     }
   }
 
-  _focus(): any {
+  focus(): any {
     if (!this._isFocus) {
       this._isFocus = true;
       this.input.nativeElement.focus();

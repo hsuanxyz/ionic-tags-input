@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { IonTagsInput } from "../ion-tags-input";
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements AfterViewInit {
   items = ['TypeScript', 'Angular', 'Ionic'];
   items2 = ['TypeScript', 'Angular', 'Ionic'];
   items3 = ['TypeScript', 'Angular', 'Ionic'];
@@ -13,6 +14,9 @@ export class HomePage {
   items5 = ['TypeScript', 'Angular', 'Ionic'];
   items6 = ['TypeScript', 'Angular', 'Ionic'];
   items7: string[] = [];
+
+  @ViewChild('tagsInput', { read: IonTagsInput }) tagsInputRef: IonTagsInput;
+
   constructor(public navCtrl: NavController) {
 
   }
@@ -30,7 +34,13 @@ export class HomePage {
   }
 
   onBlur() {
-    console.log('Blur')
+    console.debug('Blur')
+  }
+
+  ngAfterViewInit(): void {
+    setTimeout(() => {
+      this.tagsInputRef.focus();
+    }, 100);
   }
 
 
