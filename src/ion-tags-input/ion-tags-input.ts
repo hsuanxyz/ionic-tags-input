@@ -104,7 +104,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     let tagStr = this._editTag.trim();
     if (!this.canEnterAdd) return;
     if (!this.verifyTag(tagStr)) return;
-    if (!this.isOnce(tagStr)) {
+    if (this.once && !this.isOnce(tagStr)) {
       this._editTag = '';
       return;
     }
@@ -182,7 +182,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   isOnce(tagStr: string): boolean {
-    if (!this.once) return true;
     const tags: string[] = this._tags;
     return tags.every((e: string): boolean => {
       return e !== tagStr
