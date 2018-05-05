@@ -57,6 +57,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
 })
 export class IonTagsInput implements ControlValueAccessor, OnInit {
 
+  _once: boolean = false;
   @Input() mode: string = '';
   @Input() readonly: boolean = false;
   @Input() hideRemove: boolean = false;
@@ -64,7 +65,6 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() placeholder: string = '+Tag';
   @Input() type: string = 'text';
   @Input() separatorStr: string = ',';
-  @Input() once: boolean = true;
   @Input() canEnterAdd: boolean = true;
   @Input() canBackspaceRemove: boolean = true;
   @Input() verifyMethod: (tagSrt: string) => boolean;
@@ -76,6 +76,18 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
       this.cssColor = value;
     }
   }
+  @Input()
+  set once(value: boolean | string) {
+    if (typeof value === 'string') {
+      this._once = true;
+    } else {
+      this._once = value;
+    }
+  }
+  get once(): boolean | string {
+    return this._once;
+  }
+
 
   @Output() onChange: EventEmitter<any> = new EventEmitter();
   @Output() ionFocus: EventEmitter<any> = new EventEmitter();
