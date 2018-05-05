@@ -199,14 +199,14 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
     ev.stopPropagation();
   }
 
-  blur(): any {
+  public blur(): any {
     if (this._isFocus) {
       this._isFocus = false;
       this.ionBlur.emit(this._tags);
     }
   }
 
-  focus(): any {
+  public focus(): any {
     if (!this._isFocus) {
       this._isFocus = true;
       this.input.nativeElement.focus();
