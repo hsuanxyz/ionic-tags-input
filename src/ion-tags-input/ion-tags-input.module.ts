@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { IonTagsInput } from "./ion-tags-input";
 import { IonTag } from "./ion-tag";
-import { IonicModule } from "ionic-angular";
+import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   imports: [
