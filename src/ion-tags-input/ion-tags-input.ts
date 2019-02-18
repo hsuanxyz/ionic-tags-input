@@ -42,7 +42,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
          [placeholder]="placeholder"
          [(ngModel)]="_editTag"
          (blur)="blur()"
-         (keyup.backspace)="keyRemoveTag($event); false"
+         (keyup.backspace)="keyRemoveTag(); false"
          (keyup)="separatorStrAddTag()"
          (keyup.enter)="keyAddTag()">
   `,
