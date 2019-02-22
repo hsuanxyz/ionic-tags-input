@@ -12,7 +12,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
 
-import { Platform } from 'ionic-angular';
+import { Platform } from '@ionic/angular';
 import { TAG_COLORS } from "./colors";
 
 
@@ -20,7 +20,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => IonTagsInput),
   multi: true
-};
+};  
 
 @Component({
   selector: 'ion-tags-input',
@@ -42,7 +42,7 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
          [placeholder]="placeholder"
          [(ngModel)]="_editTag"
          (blur)="blur()"
-         (keyup.backspace)="keyRemoveTag($event); false"
+         (keyup.backspace)="keyRemoveTag(); false"
          (keyup)="separatorStrAddTag()"
          (keyup.enter)="keyAddTag()">
   `,
@@ -53,7 +53,10 @@ export const CITY_PICKER_VALUE_ACCESSOR: any = {
     '[class.readonly]': 'readonly'
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [/** COMPONENT_STYLE */]
+  styleUrls: [
+    /** COMPONENT_STYLE */
+    './ion-tags-input.scss'
+  ]
 })
 export class IonTagsInput implements ControlValueAccessor, OnInit {
 
@@ -70,11 +73,7 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   @Input() verifyMethod: (tagSrt: string) => boolean;
   @Input()
   set color(value: string) {
-    if (TAG_COLORS.hasOwnProperty(value)) {
-      this.cssColor = (TAG_COLORS[value] as string);
-    } else {
-      this.cssColor = value;
-    }
+    this.cssColor = value;
   }
   @Input()
   set once(value: boolean | string) {
@@ -246,7 +245,8 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
   }
 
   initMode(): any {
-    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : this.plt.is('windows') ? 'mp' : 'md';
+    this.mode = this.plt.is('ios') ? 'ios' : this.plt.is('android') ? 'md' : 'md';
   }
 
 }
+

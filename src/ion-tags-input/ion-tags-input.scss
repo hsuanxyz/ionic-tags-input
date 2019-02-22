@@ -1,6 +1,6 @@
 .ion-tags-input {
 
-  $default-color: #4a8bfc;
+  $default-color: var(--ion-color-primary);
 
   .iti-tag-color {
     background-color: $default-color;
@@ -34,6 +34,11 @@
 
     &.iti-tag-md {
       border-radius: 4px;
+    }
+
+    &.ion-color {
+      color: var(--ion-color-contrast);
+      background-color: var(--ion-color-base);
     }
   }
 
