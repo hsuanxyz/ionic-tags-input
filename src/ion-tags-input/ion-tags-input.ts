@@ -212,9 +212,19 @@ export class IonTagsInput implements ControlValueAccessor, OnInit {
 
   public blur(): any {
     if (this._isFocus) {
-      this._isFocus = false;
-      this.ionBlur.emit(this._tags);
-    }
+            this._isFocus = false;
+            var tagStr = this._editTag.trim();  
+            if (tagStr !== '')
+            {
+                if (this.once && !this.isOnce(tagStr)) {
+                    this._editTag = '';
+                }else{
+                    this.pushTag(tagStr);
+                }
+            }                
+            
+            this.ionBlur.emit(this._tags);
+        }
   }
 
   public focus(): any {
